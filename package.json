@@ -1,0 +1,17 @@
+{
+  "name": "velodati",
+  "version": "1.0.0",
+  "description": "",
+  "main": "leaflet.js",
+  "dependencies": {
+    "@material/dialog": "^1.0.1",
+    "@polymer/paper-dialog": "^3.0.1",
+    "dialog-polyfill": "^0.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
