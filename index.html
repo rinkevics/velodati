@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="spin.css" />
 	<link rel="stylesheet" href="main.css" />
 	
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap.min.css" crossorigin="anonymous">
 	
 	
 </head>
@@ -29,118 +29,74 @@
 	</div>
 	
 	<div tabindex="650" id="main" style="height: 1000px; width: 100%; margin: 0; padding: 0; background-color: green;" >
-		<div id="mapid" style="width: 100%; height: 800px;"></div>
+		<div id="mapid" style="width: 200px; height: 200px;"></div>
 	</div>
 		
 		
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-		  <div class="modal-content">
-				  <div class="modal-header">
-					  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-					  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					  <span aria-hidden="true">&times;</span>
-					  </button>
-				  </div>
-				  <div class="modal-body">
-	  
-					  <div class="form-group">
-	  
-					  <div class="input-group">
-					  <div class="input-group-prepend">
-					  <span class="input-group-text">Komentārs</span>
-					  </div>
-					  <textarea class="form-control" aria-label="With textarea"></textarea>
-					  </div>
-	  
-					  <div class="input-group mb-3">
-					  <div class="custom-file">
-					  <input type="file" class="custom-file-input" id="imgInp">
-					  <label class="custom-file-label" for="imgInp">Izvēlēties attēlus</label>
-	  
-					  </div>
-					  <div class="input-group-append">
-					  <span class="input-group-text" id="">Upload</span>
-					  </div>
-					  </div>
-
-					  <div class="input-group">
-							<span class="input-group-text" id="pos">Komentārs</span>
-					   </div>
-	  
-					  <div class="input-group mb-3">
-					  <img id='img-upload'/>
-					  </div>
-	  
-				  </div>
-			  
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		
+		<form method="POST" enctype="multipart/form-data" action="http://localhost:8080/up">
+			
+			<input type="hidden" id="lat" name="lat" value="0">
+			<input type="hidden" id="lon" name="lon" value="0">
+			
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+			
+							<div class="form-group">
+			
+								<div class="input-group">
+									<div class="input-group-prepend">
+									<span class="input-group-text">Komentārs</span>
+									</div>
+									<textarea class="form-control" aria-label="With textarea"></textarea>
+								</div>
+				
+								<div class="input-group">
+									<div class="custom-file">
+									<input type="file" class="custom-file-input" name="myimg" id="myimg">
+									<label class="custom-file-label" for="myimg">Izvēlēties attēlus</label>			
+									</div>
+								</div>
+	
+								<div class="input-group">
+									<input type="text" class="input-group-text" name="pos" id="pos" value="location"></input>
+								</div>
+				
+								<div class="input-group	">
+									<img id='img-upload'/>
+								</div>
+	
+							</div>
+						</div>
+						
+					<div class="modal-footer">
+						<input type="submit" value="Upload" />
+						<!--button type="button" class="btn btn-primary" id="btn-send" >Nosūtīt</button-->
+					</div>
+					
+				</div>
 			</div>
-			<div class="modal-footer">
-			  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			  <button type="button" class="btn btn-primary">Save changes</button>
-			</div>
-		  </div>
-		</div>
-	  </div>
+		</form>
 
-
+	</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-		
-	<script>
-	$(document).ready( function() {
-    	$(document).on('change', '.btn-file :file', function() {
-		var input = $(this),
-			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-		input.trigger('fileselect', [label]);
-		});
+    <script src="bootstrap.min.js" crossorigin="anonymous"></script>
 
-		$('.btn-file :file').on('fileselect', function(event, label) {
-		    
-		    var input = $(this).parents('.input-group').find(':text'),
-		        log = label;
-		    
-		    if( input.length ) {
-		        input.val(log);
-		    } else {
-		        if( log ) alert(log);
-		    }
-	    
-		});
-		function readURL(input) {
-		    if (input.files && input.files[0]) {
-		        var reader = new FileReader();
-		        
-		        reader.onload = function (e) {
-		            $('#img-upload').attr('src', e.target.result);
-		        }
-		        
-		        reader.readAsDataURL(input.files[0]);exampleModalCenter
-		    }
-		}
-
-		$("#imgInp").change(function(){
-		    readURL(this);
-		}); 	
-		
-		$('#exampleModalCenter').on('shown.bs.modal', function () {
-			navigator.geolocation.getCurrentPosition(
-			 	pos =>  {					
-					const lat = pos.coords.latitude;
-					const lon = pos.coords.longitude;
-					document.getElementById("pos").innerHTML = 'lat:' + lat + ', lon:' + lon;
-				 });
-
-		});
-	});
-	</script>
-	
 <script src="test.js" type="module" ></script>
+<script src="fun.js" type="module" ></script>
 
 </body>
 </html>

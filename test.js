@@ -29,15 +29,34 @@ var opts = {
 		return new Promise(resolve => setTimeout(resolve, milliseconds))
 	}
 	
-	function start() {
+	function start() {	
+		
 		var mymap = L.map('mapid').setView([56.951259, 24.112614], 13);
 
 		const layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			maxZoom: 18,
 			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(mymap);
-						
-		layer.on('load', function (event) {						
+
+		fetch('http://localhost:8080/employees')
+			.then(response => {
+				return response.json()
+			})
+			.then(data => {
+				// Work with JSON data here
+				for(var i = 0; i < data.length; i++) {
+					L.marker([data[i].lat, data[i].lon])
+						.addTo(mymap)
+						.bindPopup("<b>Hello world!</b><br />I am a popup.");
+				}			
+			})
+			.catch(err => {
+				// Do something for an error here
+			});
+
+			/*
+		layer.on('load', function (event) {	
+		
 			sleep(1000)
 				.then(() => {
 					//var spin = document.getElementById('spin');
@@ -46,10 +65,12 @@ var opts = {
 					L.marker([56.951259, 24.112614]).addTo(mymap)
 						.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();					
 				});	
-		});
+		});*/
 	}
 
 	start();
+
+	alert("b");
 		
 
 /*
