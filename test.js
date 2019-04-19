@@ -21,6 +21,7 @@ var opts = {
 	position: 'absolute' // Element positioning
 };
 
+	const URL = "http://localhost:8080";
 
 	//var target = document.getElementById('main');
 	//var spinner = new Spinner(opts).spin(target);	
@@ -30,7 +31,7 @@ var opts = {
 	}
 	
 	function start() {	
-		
+				
 		var mymap = L.map('mapid').setView([56.951259, 24.112614], 13);
 
 		const layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -38,7 +39,7 @@ var opts = {
 			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(mymap);
 
-		fetch('http://localhost:8080/employees')
+		fetch(URL + '/employees')
 			.then(response => {
 				return response.json()
 			})

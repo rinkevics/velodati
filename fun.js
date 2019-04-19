@@ -2,9 +2,9 @@
 			
 		
     	$(document).on('change', '.btn-file :file', function() {
-		var input = $(this),
+			var input = $(this),
 			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-		input.trigger('fileselect', [label]);
+			input.trigger('fileselect', [label]);
 		});
 
 		$('.btn-file :file').on('fileselect', function(event, label) {
@@ -20,6 +20,10 @@
 	    
         });
         
+		$("#myimg").change(function(){
+		    readURL(this);
+		});
+		 	
 		function readURL(input) {
 		    if (input.files && input.files[0]) {
 		        var reader = new FileReader();
@@ -31,10 +35,6 @@
 		        reader.readAsDataURL(input.files[0]);
 		    }
 		}
-
-		$("#myimg").change(function(){
-		    readURL(this);
-		}); 	
 		
 		$('#exampleModalCenter').on('shown.bs.modal', function () {
 			
@@ -50,17 +50,5 @@
 				 });
 
         });
-        
-        /*$('#btn-send').on('click', function () {
-            
-            var photo = document.getElementById("myimg");
-            // the file is the first element in the files property
-            var file = photo.files[0];
-
-            console.log("File name: " + file.name);
-            console.log("File size: " + file.size);
-
-            
-        }); */
         
 	});
