@@ -32,8 +32,8 @@ var opts = {
 	
 	function start() {	
 				
-		//var mymap = L.map('mapid').setView([56.951259, 24.112614], 13);
-		var mymap = L.map('mapid').setView([56.516691, 27.331416], 13);
+		var mymap = L.map('mapid').setView([56.951259, 24.112614], 13);
+		//var mymap = L.map('mapid').setView([56.516691, 27.331416], 13);
 		
 		const layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			maxZoom: 18,

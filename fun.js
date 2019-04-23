@@ -1,5 +1,4 @@
 	$(document).ready( function() {
-			
 		
     	$(document).on('change', '.btn-file :file', function() {
 			var input = $(this),
