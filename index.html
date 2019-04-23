@@ -16,27 +16,24 @@
 	
     <link rel="stylesheet" href="bootstrap.min.css" crossorigin="anonymous">
 	
-	
 </head>
 <body>
 
 	<div style="width: 100%; padding-bottom: 20px; padding-top: 20px; background-color: lightblue;">
-		<div style="width: 800px; margin-left: auto; margin-right: auto; height: 40px;">
+		<div style="max-width: 800px; margin-left: auto; margin-right: auto; height: 40px; padding-left: 15px;">
 			Velodati
-					<!-- Button trigger modal -->
-			<button type="button" style="float: right" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Reportēt</button>
+			<button type="button" id="report-btn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Ziņot</button>
 		</div>
 	</div>
 	
-	<div tabindex="650" id="main" style="height: 1000px; width: 100%; margin: 0; padding: 0; background-color: green;" >
-		<div id="mapid" style="width: 200px; height: 200px;"></div>
+	<div tabindex="650" id="main" style="height: 1000px; width: 100%; margin: 0; padding: 0;" >
+		<div id="mapid" ></div>
 	</div>
-		
 		
 <!-- Modal -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		
-		<form method="POST" enctype="multipart/form-data" action="http://localhost:8080/up">
+		<form method="POST" id="myform" enctype="multipart/form-data" action="/app/up">
 			
 			<input type="hidden" id="lat" name="lat" value="0">
 			<input type="hidden" id="lon" name="lon" value="0">
@@ -44,42 +41,48 @@
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+							<h5 class="modal-title" id="exampleModalLongTitle">Ziņot</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
-			
 							<div class="form-group">
+								<div class="input-group input-row">
+									<select class="custom-select" id="inputGroupSelect01">
+										<option selected>Kategorija</option>
+										<option value="1">Šaurība / nepārredzamība</option>
+										<option value="2">Strauji pagriezieni</option>
+										<option value="3">Segims (bedres, bīstamas apmales)</option>
+									</select>
+								</div>
 			
-								<div class="input-group">
+								<div class="input-group input-row">
 									<div class="input-group-prepend">
 									<span class="input-group-text">Komentārs</span>
 									</div>
-									<textarea class="form-control" aria-label="With textarea"></textarea>
+									<textarea class="form-control" name="description" aria-label="With textarea"></textarea>
 								</div>
 				
-								<div class="input-group">
+								<div class="input-group input-row">
 									<div class="custom-file">
 									<input type="file" class="custom-file-input" name="myimg" id="myimg">
 									<label class="custom-file-label" for="myimg">Izvēlēties attēlus</label>			
 									</div>
 								</div>
 	
-								<div class="input-group">
-									<input type="text" class="input-group-text" name="pos" id="pos" value="location"></input>
+								<div class="input-group input-row">
+									<input type="text" class="input-group-text" name="pos" id="pos" value="atrašanās vieta"></input>
 								</div>
 				
 								<div class="input-group	">
 									<img id='img-upload'/>
 								</div>
-	
 							</div>
 						</div>
 						
 					<div class="modal-footer">
-						<input type="submit" value="Upload" />
+						<input type="submit" class="btn btn-primary" value="Upload" />
 						<!--button type="button" class="btn btn-primary" id="btn-send" >Nosūtīt</button-->
 					</div>
 					
@@ -91,7 +94,7 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="jquery-3.4.0.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="bootstrap.min.js" crossorigin="anonymous"></script>
 

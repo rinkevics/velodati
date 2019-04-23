@@ -2,6 +2,10 @@ body {
 	margin: 0;
 }
 
+.input-row {
+	padding-bottom: 15px;
+}
+
 #spin {
 	z-index: 1000;
 	
@@ -14,4 +18,37 @@ body {
 	right: 0;
 	top: 0;
 	bottom: 0;
+}
+
+#mapid {
+	width: 100%; 
+	height: 100%;
+}
+
+@media only screen and (max-width: 400px) {
+	#main {
+	  background-color: gray;
+	}
+
+	#report-btn {
+		position: fixed;
+		top: 85%;
+		left: 50%;
+		width: 100px;
+		margin-left: -50px;
+		z-index: 1000;
+	}
+}
+
+@media only screen and (min-width: 401px) {
+	#main {
+	  	background-color: lightseagreen;
+	}
+
+	#report-btn {
+		display: block;
+		float: right;
+		margin-right: 15px;
+		width: 100px;
+	}
 }

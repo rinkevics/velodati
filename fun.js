@@ -49,6 +49,29 @@
 					document.getElementById("lon").value = lon;
 				 });
 
-        });
+		});
+		
+			$('#myform').on('submit', function(e) {
+
+				var data = new FormData($('#myform')[0]);
+
+				e.preventDefault();
+				$.ajax({
+					url : $(this).attr('action') || window.location.pathname,
+					type: "POST",
+					dataType: 'json',
+					contentType: 'multipart/form-data',
+					processData: false,
+					contentType: false,
+					crossDomain: true,
+					data: data,
+					success: function (data) {
+						alert("ok");
+					},
+					error: function (jXHR, textStatus, errorThrown) {
+						alert(errorThrown);
+					}
+				});
+			});
         
 	});

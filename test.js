@@ -21,7 +21,7 @@ var opts = {
 	position: 'absolute' // Element positioning
 };
 
-	const URL = "http://localhost:8080";
+	const URL = "/app";
 
 	//var target = document.getElementById('main');
 	//var spinner = new Spinner(opts).spin(target);	
@@ -32,8 +32,9 @@ var opts = {
 	
 	function start() {	
 				
-		var mymap = L.map('mapid').setView([56.951259, 24.112614], 13);
-
+		//var mymap = L.map('mapid').setView([56.951259, 24.112614], 13);
+		var mymap = L.map('mapid').setView([56.516691, 27.331416], 13);
+		
 		const layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			maxZoom: 18,
 			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -48,7 +49,8 @@ var opts = {
 				for(var i = 0; i < data.length; i++) {
 					L.marker([data[i].lat, data[i].lon])
 						.addTo(mymap)
-						.bindPopup("<b>Hello world!</b><br />I am a popup.");
+						.bindPopup("<img src='/app/files/" + data[i].img + "' height='100' width='100' /><br/>"+
+							data[i].description);
 				}			
 			})
 			.catch(err => {
@@ -67,11 +69,11 @@ var opts = {
 						.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();					
 				});	
 		});*/
+
+		return mymap;
 	}
 
-	start();
-
-	alert("b");
+	var mymap = start();
 		
 
 /*
