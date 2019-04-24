@@ -58,17 +58,17 @@
 				$.ajax({
 					url : $(this).attr('action') || window.location.pathname,
 					type: "POST",
-					dataType: 'json',
 					contentType: 'multipart/form-data',
 					processData: false,
 					contentType: false,
 					crossDomain: true,
 					data: data,
 					success: function (data) {
-						alert("ok");
+						alert("Paldies par ziņojumu!");
+						location.reload();
 					},
 					error: function (jXHR, textStatus, errorThrown) {
-						alert(errorThrown);
+						alert("err "+ errorThrown);
 					}
 				});
 			});
