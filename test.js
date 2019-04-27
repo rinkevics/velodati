@@ -40,20 +40,24 @@ var opts = {
 			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 		}).addTo(mymap);
 
+		alert("start");
 		fetch(URL + '/employees')
 			.then(response => {
+				alert("response");
 				return response.json()
 			})
 			.then(data => {
+				alert("ok");
 				// Work with JSON data here
 				for(var i = 0; i < data.length; i++) {
 					L.marker([data[i].lat, data[i].lon])
 						.addTo(mymap)
-						.bindPopup("<img src='/app/files/" + data[i].img + "' height='100' width='100' /><br/>"+
+						.bindPopup("<img src='" + URL + "/files/" + data[i].img + "' height='100' width='100' /><br/>"+
 							data[i].description);
 				}			
 			})
 			.catch(err => {
+				alert(err);
 				// Do something for an error here
 			});
 
