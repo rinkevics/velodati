@@ -21,7 +21,7 @@ var opts = {
 	position: 'absolute' // Element positioning
 };
 
-	const URL = "/app";
+	
 
 	//var target = document.getElementById('main');
 	//var spinner = new Spinner(opts).spin(target);	
@@ -30,54 +30,6 @@ var opts = {
 		return new Promise(resolve => setTimeout(resolve, milliseconds))
 	}
 	
-	function start() {	
-				
-		var mymap = L.map('mapid').setView([56.951259, 24.112614], 13);
-		//var mymap = L.map('mapid').setView([56.516691, 27.331416], 13);
-		
-		const layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-			maxZoom: 18,
-			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-		}).addTo(mymap);
-
-		alert("start");
-		fetch(URL + '/employees')
-			.then(response => {
-				alert("response");
-				return response.json()
-			})
-			.then(data => {
-				alert("ok");
-				// Work with JSON data here
-				for(var i = 0; i < data.length; i++) {
-					L.marker([data[i].lat, data[i].lon])
-						.addTo(mymap)
-						.bindPopup("<img src='" + URL + "/files/" + data[i].img + "' height='100' width='100' /><br/>"+
-							data[i].description);
-				}			
-			})
-			.catch(err => {
-				alert(err);
-				// Do something for an error here
-			});
-
-			/*
-		layer.on('load', function (event) {	
-		
-			sleep(1000)
-				.then(() => {
-					//var spin = document.getElementById('spin');
-					//spin.classList.remove('is-active');
-					
-					L.marker([56.951259, 24.112614]).addTo(mymap)
-						.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();					
-				});	
-		});*/
-
-		return mymap;
-	}
-
-	var mymap = start();
 		
 
 /*

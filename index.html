@@ -2,7 +2,7 @@
 <html>
 <head>
 	
-	<title>Quick Start - Leaflet</title>
+	<title>VeloSlazds</title>
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,20 +18,48 @@
 	
 </head>
 <body>
-
-	<div style="width: 100%; padding-bottom: 20px; padding-top: 20px; background-color: lightblue;">
-		<div style="max-width: 800px; margin-left: auto; margin-right: auto; height: 40px; padding-left: 15px;">
-			Velodati
-			<button type="button" id="report-btn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Ziņot</button>
+	
+	<div class="wrapper">
+		<div class="box box-1">
+			<div id="top-row" style="height: 100px; width: 100%; padding-bottom: 20px; padding-top: 20px; background-color: lightblue;">
+					<div style="max-width: 800px; margin-left: auto; margin-right: auto; height: 40px; padding-left: 15px;">
+						Velodati
+						<button type="button" id="report-btn" class="btn btn-primary" data-toggle="modal" data-target="#modal2">Ziņot</button>
+					</div>
+				</div>
+		</div>
+		<div class="box box-2">
+				<div tabindex="650" id="main" style="height: 100%; width: 100%; margin: 0; padding: 0; background-color: royalblue;" >
+						<div id="mapid" ></div>
+					</div>
 		</div>
 	</div>
 	
-	<div tabindex="650" id="main" style="height: 1000px; width: 100%; margin: 0; padding: 0;" >
-		<div id="mapid" ></div>
-	</div>
+
+	<img id="crosschair" class="hidden" src="/images/crosschair.png"/>
+	<button type="button" id="select-location-btn" class="btn btn-primary d-none" >OK</button>
+
+	<div class="modal" id="modal2" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title"></h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+				Izvēlieties problēmas atrašanās vietu.
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="choose-location-btn" class="btn btn-primary" data-dismiss="modal">Sākt</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
 		
 <!-- Modal -->
-	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog">
 		
 		<form method="POST" id="myform" enctype="multipart/form-data" action="/app/up">
 			
