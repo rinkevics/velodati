@@ -1,10 +1,11 @@
 
 const URL = "/app";
 
+var latlon;
+
 
 $(document).ready( function() {
 		
-
     	$(document).on('change', '.btn-file :file', function() {
 			var input = $(this),
 			label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
@@ -139,23 +140,16 @@ $(document).ready( function() {
 			var crosschair = document.getElementById("crosschair");
 			
 			var point = L.point( crosschair.offsetLeft + 20, crosschair.offsetTop - topRowHeight );
-			var latlon = mymap.containerPointToLatLng(point);
+			latlon = mymap.containerPointToLatLng(point);
 
 			L.marker(latlon).addTo(mymap);
+
+			$('#exampleModalCenter').modal('show'); 
 		}
 		
 		$('#exampleModalCenter').on('shown.bs.modal', function () {
-			
-			navigator.geolocation.getCurrentPosition(
-			 	pos =>  {					
-					const lat = pos.coords.latitude;
-					const lon = pos.coords.longitude;
-					
-					const value = 'lat:' + lat + ', lon:' + lon;
-					document.getElementById("pos").value = value;
-					document.getElementById("lat").value = lat;
-					document.getElementById("lon").value = lon;
-				 });
+			document.getElementById("lat").value = latlon.lat;
+			document.getElementById("lon").value = latlon.lng;
 
 		});
 		
