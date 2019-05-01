@@ -21,10 +21,11 @@
 	
 	<div class="wrapper">
 		<div class="box box-1">
-			<div id="top-row" style="height: 100px; width: 100%; padding-bottom: 20px; padding-top: 20px; background-color: lightblue;">
+			<div id="top-row" >
 					<div style="max-width: 800px; margin-left: auto; margin-right: auto; height: 40px; padding-left: 15px;">
 						Velodati
 						<button type="button" id="report-btn" class="btn btn-primary" data-toggle="modal" data-target="#modal2">Ziņot</button>
+						<a id="about-project-link" href="#myModal" data-toggle = "modal" data-target= "#myModal" class="nav-link">Par projektu</a>
 					</div>
 				</div>
 		</div>
@@ -58,7 +59,7 @@
 		</div>
 	  </div>
 		
-<!-- Modal -->
+	<!-- report -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog">
 		
 		<form method="POST" id="myform" enctype="multipart/form-data" action="/app/up">
@@ -115,6 +116,23 @@
 		</form>
 
 	</div>
+
+	<!-- about the project -->
+	<div class="modal fade" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content"> 
+					<div class="modal-header">
+						<h5 class="modal-title">For your Queries</h5> 
+					</div>
+					<div class="modal-body">
+						
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss = "modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
