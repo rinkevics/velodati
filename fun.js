@@ -1,6 +1,4 @@
 
-const URL = "/app";
-
 var latlon;
 
 
@@ -39,7 +37,7 @@ $(document).ready( function() {
 				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(mymap);
 
-			fetch(URL + '/employees')
+			fetch('/app/places')
 				.then(response => {
 					return response.json()
 				})
@@ -48,27 +46,15 @@ $(document).ready( function() {
 					for(var i = 0; i < data.length; i++) {
 						L.marker([data[i].lat, data[i].lon])
 							.addTo(mymap)
-							.bindPopup("<img src='" + URL + "/files/" + data[i].img + "' height='100' width='100' /><br/>"+
-								data[i].description);
-					}			
+							.bindPopup("<img src='/app/files/" + data[i].img + "' height='100' width='100' style='margin-bottom: 10px' /><br/>"+
+								data[i].description + "<br/>" +
+								"<button type='button' id='btnLike' class='btn btn-outline-success' "+
+									"style='margin-top: 10px; margin-bottom: 10px;' onclick='startVote("+ data[i].id+ ")'>👍</button>");
+					}
 				})
 				.catch(err => {
 					alert(err);
-					// Do something for an error here
 				});
-
-				/*
-			layer.on('load', function (event) {	
-			
-				sleep(1000)
-					.then(() => {
-						//var spin = document.getElementById('spin');
-						//spin.classList.remove('is-active');
-						
-						L.marker([56.951259, 24.112614]).addTo(mymap)
-							.bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();					
-					});	
-			});*/
 
 			return mymap;
 		}
@@ -154,9 +140,7 @@ $(document).ready( function() {
 		});
 		
 		$('#myform').on('submit', function(e) {
-
 			var data = new FormData($('#myform')[0]);
-
 			e.preventDefault();
 			$.ajax({
 				url : $(this).attr('action') || window.location.pathname,
