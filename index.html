@@ -5,7 +5,7 @@
 	<title>VeloSlazds</title>
 
 	<meta charset="utf-8" />
-	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
@@ -18,36 +18,38 @@
 	
 </head>
 <body>
-
+	
 	<div class="wrapper">
-		<div class="box-1">
-			test
+		<div class="box box-1">
+			<div id="top-row" >
+					<div style="max-width: 800px; margin-left: auto; margin-right: auto; height: 40px; padding-left: 15px;">
+						Velodati
+						<button type="button" id="report-btn" class="btn btn-primary" data-toggle="modal" data-target="#choose-place">Ziņot</button>
+						<a id="about-project-link" href="#myModal" data-toggle = "modal" data-target= "#myModal" class="nav-link">Par projektu</a>
+					</div>
+				</div>
 		</div>
-		<div class="box-2">
-			<div tabindex="650" id="main" >
-				<div id="mapid" ></div>
-			</div>
+		<div class="box box-2">
+				<div tabindex="650" id="main" style="height: 100%; width: 100%; margin: 0; padding: 0; background-color: royalblue;" >
+						<div id="mapid" ></div>
+					</div>
 		</div>
 	</div>
 
+	<img id="crosshair" class="hidden" src="/images/crosshair.png"/>
+	<button type="button" id="select-location-btn" class="btn btn-primary d-none" >OK</button>
 
-	<button type="button" id="report-btn-2" class="btn btn-primary" data-toggle="modal" data-target="#choose-place">Ziņot</button>
+	<div class="modal" id="choose-place" tabindex="-1" role="dialog">
+	</div>
+		
+	<div class="modal fade" id="report" tabindex="-1" role="dialog">
+	</div>
 
-	
-		<img id="crosshair" class="hidden" src="/images/crosshair.png"/>
-		<button type="button" id="select-location-btn" class="btn btn-primary d-none" >OK</button>
-	
-		<div class="modal" id="choose-place" tabindex="-1" role="dialog">
-		</div>
-			
-		<div class="modal fade" id="report" tabindex="-1" role="dialog">
-		</div>
-	
-		<div class="modal fade" id="vote-top" tabindex="-1" role="dialog">
-		</div>
-	
+	<div class="modal fade" id="vote-top" tabindex="-1" role="dialog">
+	</div>
+
 		<div class="modal fade" id="voteLogin" tabindex="-1" role="dialog">
-	
+
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 				<div class="modal-header">
@@ -68,18 +70,14 @@
 			</div>
 		</div>
 
-		
-
-	
     <script src="jquery-3.4.0.min.js" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
 			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-		<script src="bootstrap.min.js" crossorigin="anonymous"></script>
-		
-		<script src="test.js" type="module" ></script>
-		<script src="main.js" type="module" ></script>
-		<script src="vote.js" type="module" ></script>
+    <script src="bootstrap.min.js" crossorigin="anonymous"></script>
 
+<script src="test.js" type="module" ></script>
+<script src="main.js" type="module" ></script>
+<script src="vote.js" type="module" ></script>
 
 </body>
 </html>

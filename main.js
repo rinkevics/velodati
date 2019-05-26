@@ -69,7 +69,7 @@ function centerCrosshair() {
 }
 
 function getCrosshairLocation() {	
-	var topRowHeight = $('#navbox').height();
+	var topRowHeight = $('#top-row').height();
 	var offset = $('#crosshair').offset();
 
 	var crosshair = document.getElementById("crosshair");
@@ -115,11 +115,10 @@ function setImg(input) {
 }
 
 function submitForm(e) {
-	var form = $('#myform')[0];
-	var data = new FormData(form);
+	var data = new FormData($('#myform')[0]);
 	e.preventDefault();
 	$.ajax({
-		url : form.action || window.location.pathname,
+		url : $(this).attr('action') || window.location.pathname,
 		type: "POST",
 		contentType: 'multipart/form-data',
 		processData: false,
