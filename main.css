@@ -115,6 +115,10 @@ body {
 
 @media only screen and (max-width: 400px) {
 	#report-btn {
+		display: none;
+	}
+
+	#report-btn-2 {		
 		position: fixed;
 		top: 85%;
 		left: 50%;
@@ -130,6 +134,10 @@ body {
 		float: right;
 		margin-right: 15px;
 		width: 100px;
+	}
+	
+	#report-btn-2 {
+		display: none;
 	}
 }
 
