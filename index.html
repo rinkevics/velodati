@@ -5,136 +5,49 @@
 	<title>VeloSlazds</title>
 
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 
-    <link rel="stylesheet" href="leaflet.css"  crossorigin=""/>
+	<link rel="stylesheet" href="leaflet.css"  crossorigin=""/>
 	<script src="leaflet.js" crossorigin=""></script>
 	<link rel="stylesheet" href="spin.css" />
 	<link rel="stylesheet" href="main.css" />
-	
-    <link rel="stylesheet" href="bootstrap.min.css" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="bootstrap.min.css" crossorigin="anonymous">
 	
 </head>
 <body>
-	
+
 	<div class="wrapper">
-		<div class="box box-1">
-			<div id="top-row" >
-					<div style="max-width: 800px; margin-left: auto; margin-right: auto; height: 40px; padding-left: 15px;">
-						Velodati
-						<button type="button" id="report-btn" class="btn btn-primary" data-toggle="modal" data-target="#modal2">Ziņot</button>
-						<a id="about-project-link" href="#myModal" data-toggle = "modal" data-target= "#myModal" class="nav-link">Par projektu</a>
-					</div>
-				</div>
+		<div class="box-1">
+			test
 		</div>
-		<div class="box box-2">
-				<div tabindex="650" id="main" style="height: 100%; width: 100%; margin: 0; padding: 0; background-color: royalblue;" >
-						<div id="mapid" ></div>
-					</div>
+		<div class="box-2">
+			<div tabindex="650" id="main" >
+				<div id="mapid" ></div>
+			</div>
 		</div>
 	</div>
 
-	<img id="crosschair" class="hidden" src="/images/crosschair.png"/>
-	<button type="button" id="select-location-btn" class="btn btn-primary d-none" >OK</button>
 
-	<div class="modal" id="modal2" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-		  <div class="modal-content">
-			<div class="modal-header">
-			  <h5 class="modal-title"></h5>
-			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			  </button>
-			</div>
-			<div class="modal-body">
-				Izvēlieties problēmas atrašanās vietu.
-			</div>
-			<div class="modal-footer">
-				<button type="button" id="choose-location-btn" class="btn btn-primary" data-dismiss="modal">Sākt</button>
-			</div>
-		  </div>
+	<button type="button" id="report-btn-2" class="btn btn-primary" data-toggle="modal" data-target="#choose-place">Ziņot</button>
+
+	
+		<img id="crosshair" class="hidden" src="/images/crosshair.png"/>
+		<button type="button" id="select-location-btn" class="btn btn-primary d-none" >OK</button>
+	
+		<div class="modal" id="choose-place" tabindex="-1" role="dialog">
 		</div>
-	  </div>
-		
-	<!-- report -->
-	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog">
-		
-		<form method="POST" id="myform" enctype="multipart/form-data" action="/app/up">
 			
-			<input type="hidden" id="lat" name="lat" value="0">
-			<input type="hidden" id="lon" name="lon" value="0">
-			
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLongTitle">Ziņot</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<div class="form-group">
-								<div class="input-group input-row">
-									<select class="custom-select" id="inputGroupSelect01">
-										<option selected>Kategorija</option>
-										<option value="1">Šaurība / nepārredzamība</option>
-										<option value="2">Strauji pagriezieni</option>
-										<option value="3">Segims (bedres, bīstamas apmales)</option>
-									</select>
-								</div>
-			
-								<div class="input-group input-row">
-									<div class="input-group-prepend">
-									<span class="input-group-text">Komentārs</span>
-									</div>
-									<textarea class="form-control" name="description" aria-label="With textarea"></textarea>
-								</div>
-				
-								<div class="input-group input-row">
-									<div class="custom-file">
-									<input type="file" class="custom-file-input" name="myimg" id="myimg">
-									<label class="custom-file-label" for="myimg">Izvēlēties attēlus</label>			
-									</div>
-								</div>
-				
-								<div class="input-group	">
-									<img id='img-upload'/>
-								</div>
-							</div>
-						</div>
-						
-					<div class="modal-footer">
-						<input type="submit" class="btn btn-primary" value="Upload" />
-						<!--button type="button" class="btn btn-primary" id="btn-send" >Nosūtīt</button-->
-					</div>
-					
-				</div>
-			</div>
-		</form>
-
-	</div>
-
-	<!-- about the project -->
-	<div class="modal fade" id="myModal">
-			<div class="modal-dialog">
-				<div class="modal-content"> 
-					<div class="modal-header">
-						<h5 class="modal-title">For your Queries</h5> 
-					</div>
-					<div class="modal-body">
-						
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-dismiss = "modal">Close</button>
-					</div>
-				</div>
-			</div>
+		<div class="modal fade" id="report" tabindex="-1" role="dialog">
 		</div>
-
+	
+		<div class="modal fade" id="vote-top" tabindex="-1" role="dialog">
+		</div>
+	
 		<div class="modal fade" id="voteLogin" tabindex="-1" role="dialog">
-
+	
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 				<div class="modal-header">
@@ -155,109 +68,18 @@
 			</div>
 		</div>
 
+		
+
+	
     <script src="jquery-3.4.0.min.js" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
 			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="bootstrap.min.js" crossorigin="anonymous"></script>
+		<script src="bootstrap.min.js" crossorigin="anonymous"></script>
+		
+		<script src="test.js" type="module" ></script>
+		<script src="main.js" type="module" ></script>
+		<script src="vote.js" type="module" ></script>
 
-
-<script src="test.js" type="module" ></script>
-<script src="fun.js" type="module" ></script>
-	
-<script>
-
-	function startVote(p) {
-		window.placeID = p;
-
-		var token = getCookie("token");
-		if(token == null) {
-			$('#voteLogin').modal('show'); 
-		} else {
-			var user = getCookie("user");
-			statusChangeCallback(user);
-		}
-	}
-
-	window.fbAsyncInit = function() {
-		FB.init({	
-			appId      : '273875460184611',
-			cookie     : true,
-			xfbml      : true,
-			version    : 'v3.3'
-		});
-			
-		FB.AppEvents.logPageView();   
-	};
-
-	(function(d, s, id){
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) {return;}
-		js = d.createElement(s); js.id = id;
-		js.src = "https://connect.facebook.net/en_US/sdk.js";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-
-
-	function login() {
-		FB.getLoginStatus(function(response) {
-				if(response.status = "connected") {
-					var user = response.authResponse.userID;
-					var token = response.authResponse.accessToken;
-					setCookie("user", user, 1);
-					setCookie("token", token, 1);
-					statusChangeCallback(user);
-				} else {
-					console.log(response);
-				}
-		});
-	}
-
-	function statusChangeCallback(user) {
-		$.ajax({
-				url : "/app/vote",
-				type: "POST",
-				processData: false,
-				crossDomain: true,
-				data: "place="+ window.placeID+ "&user="+ user,
-				success: function (data) {
-					$("#btnLike").removeClass('btn-outline-success');
-					$("#btnLike").addClass('btn-success');
-					$('#voteLogin').modal('hide'); 
-				},
-				error: function (jXHR, textStatus, errorThrown) {
-					alert("Error in statusChangeCallback: "+ errorThrown);
-					$('#voteLogin').modal('hide'); 
-				}
-			});
-	}
-
-	function setCookie(name,value,days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days*24*60*60*1000));
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-	}
-
-	function getCookie(name) {
-			var nameEQ = name + "=";
-			var ca = document.cookie.split(';');
-			for(var i=0;i < ca.length;i++) {
-					var c = ca[i];
-					while (c.charAt(0)==' ') c = c.substring(1,c.length);
-					if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
-			}
-			return null;
-	}
-
-	function eraseCookie(name) {   
-			document.cookie = name+'=; Max-Age=-99999999;';  
-	}
-
-
-</script>
 
 </body>
 </html>

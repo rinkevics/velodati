@@ -26,40 +26,4 @@ var opts = {
 	//var target = document.getElementById('main');
 	//var spinner = new Spinner(opts).spin(target);	
 	
-	const sleep = (milliseconds) => {
-		return new Promise(resolve => setTimeout(resolve, milliseconds))
-	}
-	
-		
-
-/*
-		navigator.geolocation.getCurrentPosition(
-			pos => {
-				var mymap = L.map('mapid').setView([pos.coords.latitude, pos.coords.longitude], 13);
-
-				var layer = L.tileLayer('https://a.tile.openstreetmap.org/${z}/${x}/${y}.png ', {
-					maxZoom: 18,
-					attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-				}).addTo(mymap);
-				
-				layer.on('load', function (event) {
-					spinner.stop();
-				});
-				
-				
-			});
-			*/
-			
-			
-		// navigator.geolocation.getCurrentPosition(
-		// 	pos => {
-		// 		var mymap = L.map('mapid').setView([pos.coords.latitude, pos.coords.longitude], 13);
-
-		// 		L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		// 			maxZoom: 18,
-		// 			attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-		// 		}).addTo(mymap);
-		// 	});
-	
-				
 				
