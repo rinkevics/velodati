@@ -101,6 +101,9 @@ body {
 	padding-bottom: 20px; 
 	padding-top: 20px;
 	background-color: lightblue;
+
+	z-index: 1000;
+
 }
 
 #about-project-link {
