@@ -14,11 +14,15 @@
 	<link rel="stylesheet" href="spin.css" />
 	<link rel="stylesheet" href="main.css" />
 
+	<script src="dist/leaflet.markercluster.js" crossorigin=""></script>
+	<link rel="stylesheet" href="dist/MarkerCluster.css" />
+	<link rel="stylesheet" href="dist/MarkerCluster.Default.css" />
+
 	<link rel="stylesheet" href="bootstrap.min.css" crossorigin="anonymous">
 	
 </head>
 <body>
-	
+
 	<div class="wrapper">
 		<div class="box box-1">
 			<div id="top-row" >
@@ -32,15 +36,15 @@
 										<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
 											<span class="navbar-toggler-icon"></span>
 										</button>
-				
+
 										<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 											<div class="navbar-nav ml-auto text-right float-right text-right pr-3">
-												<a class="nav-item nav-link" href="#">Tops</a>
+												<a class="nav-item nav-link" href="#vote-top" data-toggle="modal" data-target="#vote-top">Tops</a>
 												<a class="nav-item nav-link" href="#">Par projektu</a>
 												<button type="button" id="report-btn" class="btn btn-primary" data-toggle="modal" data-target="#choose-place">Ziņot</button>
-				
+
 											</div>
-										</div>
+										</div> 	
 									</nav>
 								</div>
 							</div>
@@ -61,7 +65,7 @@
 
 	<div class="modal" id="choose-place" tabindex="-1" role="dialog">
 	</div>
-		
+
 	<div class="modal fade" id="report" tabindex="-1" role="dialog">
 	</div>
 
@@ -84,15 +88,17 @@
 					</fb:login-button>
 				</div>
 				<div class="modal-footer">
-					
+
 				</div>
 				</div>
 			</div>
 		</div>
 
-    <script src="jquery-3.4.0.min.js" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<!--<div id="vote-top"></div>-->
+
+	<script src="jquery-3.4.0.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="bootstrap.min.js" crossorigin="anonymous"></script>
 
 <script src="test.js" type="module" ></script>

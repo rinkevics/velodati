@@ -12,12 +12,18 @@ function includeHtml(url, id) {
 	
 function initMap() {	
 				
-	window.mymap = L.map('mapid').setView([56.951259, 24.112614], 13);	
+	window.mymap = L.map('mapid').setView([56.951259, 24.112614], 13);
 
 	const layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 18,
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 	}).addTo(window.mymap);
+
+	window.group = L.markerClusterGroup({
+		chunkedLoading: true,
+		//singleMarkerMode: true,
+		spiderfyOnMaxZoom: false
+	  });
 
 	fetch('/app/places')
 		.then(response => {
@@ -26,13 +32,18 @@ function initMap() {
 		.then(data => {
 			// Work with JSON data here
 			for(var i = 0; i < data.length; i++) {
-				L.marker([data[i].lat, data[i].lon])
-					.addTo(window.mymap)
-					.bindPopup("<img src='/app/files/" + data[i].img + "' height='100' width='100' style='margin-bottom: 10px' /><br/>"+
-						data[i].description + "<br/>" +
-						"<button type='button' id='btnLike' class='btn btn-outline-success' "+
-							"style='margin-top: 10px; margin-bottom: 10px;' onclick='startVote("+ data[i].id+ ")'>👍</button>");
+				var marker = L.marker([data[i].lat, data[i].lon]);
+
+				marker.bindPopup("<div id='popup'>"+
+					"<img src='/app/files/" + data[i].img + "' id='popup-image'/><br/>"+
+					data[i].description + "<br/>" +
+					"<button type='button' id='btnLike' class='btn btn-outline-success' "+
+						"style='margin-top: 10px; margin-bottom: 10px;' onclick='startVote("+ data[i].id+ ")'>👍</button>"+
+						"</div>");
+				window.group.addLayer(marker);
 			}
+			
+			window.mymap.addLayer(window.group);
 		})
 		.catch(err => {
 			alert(err);
@@ -118,7 +129,7 @@ function submitForm(e) {
 	var data = new FormData($('#myform')[0]);
 	e.preventDefault();
 	$.ajax({
-		url : $(this).attr('action') || window.location.pathname,
+		url : '/app/up',
 		type: "POST",
 		contentType: 'multipart/form-data',
 		processData: false,
@@ -130,7 +141,7 @@ function submitForm(e) {
 			location.reload();
 		},
 		error: function (jXHR, textStatus, errorThrown) {
-			alert("err "+ errorThrown);
+			alert("Kļūda: " + textStatus + " "+ errorThrown);
 		}
 	});
 }
@@ -139,9 +150,7 @@ function createVoteTopPage() {
 	
 }
 
-$(document).ready( function() {
-	initMap();
-	
+$(window).on("load", function() {
 	includeHtml('html/choose-place.html', 'choose-place');
 	includeHtml('html/report.html', 'report');
 	includeHtml('html/vote-top.html', 'vote-top');
@@ -154,15 +163,16 @@ $(document).ready( function() {
 		showCrosshair();
 		setCurrentLocation();
 	});
-		
+
 	$(document).on("click", "#select-location-btn", function(event){
 		getCrosshairLocation();
-		$('#report').modal('show'); 
+		$('#report').modal('show');
 		hideCrosshair();
-	});		
-	
+	});
+
 	$('#myform').on('submit', function(e) {
 		submitForm(e);
 	});
 
+	initMap();
 });
