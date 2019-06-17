@@ -2,10 +2,15 @@ html {
 	height: 100%;
 }
 
+* {
+    font-family: 'Space Mono', monospace;
+}
+
 body {
 	margin: 0;
 	height: 100%;
 }
+
 
 .wrapper {
 	height: 100%;
@@ -22,6 +27,7 @@ body {
 
 .box-1 {
 	height: 80px;
+	border-bottom: 3px solid #3cc4f4;
 }
 
 .box-2 {
@@ -32,27 +38,33 @@ body {
 	height: 60px;
 }
 
+.pad {
+   margin-left: 20px !important;
+}
+
+#top-row {
+	height: 80px;
+	width: 100%;
+	padding-bottom: 10px;
+	padding-top: 10px;
+
+	z-index: 1010;
+}
 
 .hidden {
 	display: none;
 }
 
+
 .input-row {
 	padding-bottom: 15px;
 }
 
-#spin {
-	z-index: 1000;
-	
-	position: absolute;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: auto;
-	margin-bottom: auto;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
+#main {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #mapid {
@@ -65,8 +77,9 @@ body {
 	max-width: 100%;
 }
 
+
 #crosshair2 {
-	z-index: 1000;
+	z-index: 1000;  
 	
 	width: 40px;
 	height: 40px;
@@ -90,63 +103,72 @@ body {
 	position: fixed;
 	top: 85%;
 	left: 50%;
-	width: 100px;
-	margin-left: -50px;
+	width: 180px;
+	margin-left: -90px;
 	z-index: 1000;
-}
-
-#top-row {
-	height: 80px;
-	width: 100%; 
-	padding-bottom: 10px; 
-	padding-top: 10px;
-	background-color: lightblue;
-
-	z-index: 1010;
 }
 
 .vote-top-row {
 	display: grid;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 991px) {
+
+    #logo {
+        position: fixed;
+        top: 5%;
+        left: 150px;
+        width: 230px;
+        margin-left: -115px;
+        z-index: 1000;
+    }
+
     .vote-top-row {
-        grid-template-columns: auto;
+        grid-template-columns: 1fr;
     }
 }
 
-@media only screen and (min-width: 400px) {
+@media only screen and (min-width: 992px) {
+
+    #logo {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        width: 200px;
+    }
+
     .vote-top-row {
-        grid-template-columns: auto auto;
+        grid-template-columns: 1fr 1fr;
     }
 }
 
 
 .image {
-	justify-items: end;
   	border: 3px solid #73AD21;
 }
 
 .vote-top-place {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-    padding: 10px;
-    background-color:  rgba(255, 255, 255, 0.5);
+	padding: 10px;
+	margin-right: 10px;
+    background-color:  gray;
+    float: right;
 }
-
 
 .vote-top-row > div {
     padding: 15px;
 }
 
 .vote-top-img {
-    max-width: 300px;
     max-height: 300px;
+    max-width: 100%;
+    float: right;
 }
 
 .vote-top-text {
-    width: 300px;
+}
+
+#description {
+    font-size: 10px;
 }
 
 #about-project-link {
@@ -156,7 +178,22 @@ body {
 	color: darkblue;
 }
 
-@media only screen and (max-width: 400px) {
+#report-btn, #report-btn-2, .bbutton {
+    border: 2px solid #3cc4f4;
+    border-radius: 20px;
+
+    background-color: white;
+    color: #3cc4f4;
+
+    font-style: italic;
+    font-size:24px;
+    font-weight: bold;
+    font-family: 'Space Mono', monospace ;
+
+    width: 150px;
+}
+
+@media only screen and (max-width: 991px) {
 	#report-btn {
 		display: none;
 	}
@@ -165,18 +202,16 @@ body {
 		position: fixed;
 		top: 85%;
 		left: 50%;
-		width: 100px;
 		margin-left: -50px;
 		z-index: 1000;
 	}
 }
 
-@media only screen and (min-width: 401px) {
+@media only screen and (min-width: 992px) {
 	#report-btn {
 		display: block;
 		float: right;
 		margin-right: 15px;
-		width: 100px;
 	}
 	
 	#report-btn-2 {
@@ -195,28 +230,33 @@ body {
 }
 
 
+#spin {
+	z-index: 1000;
+
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+
+
 /* change the background color */
-.navbar-custom {
-	background-color: lightblue;
+.navbar-nav {
+	background-color: white;
 }
 /* change the brand and text color */
 .navbar-custom .navbar-brand,
 .navbar-custom .navbar-text {
-    color: darkblue;
+    color: #3cc4f4;
 }
 /* change the link color */
 .navbar-custom .navbar-nav .nav-link {
-    color: darkblue;
-}
-/* change the color of active or hovered links */
-.navbar-custom .nav-item.active .nav-link,
-.navbar-custom .nav-item:focus .nav-link,
-.navbar-custom .nav-item:hover .nav-link {
-    color: red;
-}
-
-.navbar-custom .navbar-toggler {
-	color: green;
+    color: #3cc4f4;
 }
 
 .navbar-custom .navbar-toggler-icon {

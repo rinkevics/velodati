@@ -390,7 +390,7 @@
 /* Default icon URLs */
 .leaflet-default-icon-path {
 	background-image: url(images/marker-icon.png);
-	}
+}
 
 
 /* attribution and scale controls */

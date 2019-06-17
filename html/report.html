@@ -6,7 +6,7 @@
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Ziņot</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle"><b><i>Ziņo!</i></b></h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 					</button>
@@ -14,38 +14,38 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<div class="input-group input-row">
-							<select class="custom-select" id="inputGroupSelect01">
-								<option selected>Kategorija</option>
-								<option value="1">Šaurība / nepārredzamība</option>
+							<select class="custom-select" id="type" name="type" required>
+								<option selected>Izvēlies kategoriju</option>
+								<option value="1">Šaurība, nepārredzamība</option>
 								<option value="2">Strauji pagriezieni</option>
 								<option value="3">Segums (bedres, bīstamas apmales)</option>
 							</select>
 						</div>
 	
 						<div class="input-group input-row">
-							<div class="input-group-prepend">
-							<span class="input-group-text">Komentārs</span>
-							</div>
-							<textarea class="form-control" name="description" aria-label="With textarea"></textarea>
+							<label for="description">
+								Dod punktam nosaukumu! Piemēram, “Pīļu un Mednieku ielas krustojums”, “Tilta uzbrauktuve”
+							</label>
+							<textarea class="form-control" name="description" id="description" aria-label="With textarea" required></textarea>
 						</div>
-		
+
 						<div class="input-group input-row">
 							<div class="custom-file">
-							<input type="file" class="custom-file-input" name="myimg" id="myimg">
-							<label class="custom-file-label" for="myimg">Izvēlēties attēlus</label>			
+							<input type="file" class="custom-file-input" name="myimg" id="myimg" required>
+							<label class="custom-file-label" for="myimg">Pievieno attēlu</label>
 							</div>
 						</div>
-		
+
 						<div class="input-group	">
 							<img id='img-upload'/>
 						</div>
 					</div>
 				</div>
-				
+
 			<div class="modal-footer">
-				<input type="submit" class="btn btn-primary" value="Nosūtīt" />
+				<input type="submit" class="bbutton" value="Nosūtīt" />
 			</div>
-			
+
 		</div>
 	</div>
 </form>

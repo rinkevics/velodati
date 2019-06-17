@@ -12,7 +12,14 @@ function includeHtml(url, id) {
 	
 function initMap() {	
 				
-	window.mymap = L.map('mapid').setView([56.951259, 24.112614], 13);
+	window.mymap = L.map(
+	    'mapid',
+	    { zoomControl: false }
+	).setView([56.951259, 24.112614], 13);
+
+	L.control.zoom({
+         position:'bottomleft'
+    }).addTo(window.mymap);
 
 	const layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 18,
@@ -30,14 +37,23 @@ function initMap() {
 			return response.json()
 		})
 		.then(data => {
+
+            var greenIcon = L.icon({
+                iconUrl: 'images/location.png',
+
+                iconSize:     [91, 99], // size of the icon
+                iconAnchor:   [45, 75], // point of the icon which will correspond to marker's location
+                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+            });
+
 			// Work with JSON data here
 			for(var i = 0; i < data.length; i++) {
-				var marker = L.marker([data[i].lat, data[i].lon]);
+				var marker = L.marker([data[i].lat, data[i].lon],  {icon: greenIcon});
 
 				marker.bindPopup("<div id='popup'>"+
 					"<img src='/app/files/" + data[i].img + "' id='popup-image'/><br/>"+
 					data[i].description + "<br/>" +
-					"<button type='button' id='btnLike' class='btn btn-outline-success' "+
+					"Balsot <button type='button' id='btnLike' class='btn btn-outline-success' "+
 						"style='margin-top: 10px; margin-bottom: 10px;' onclick='startVote("+ data[i].id+ ")'>👍</button>"+
 						"</div>");
 				window.group.addLayer(marker);
@@ -52,6 +68,9 @@ function initMap() {
 
 function showCrosshair() {
 	var element = document.getElementById("report-btn");
+	element.classList.add("d-none");
+
+	var element = document.getElementById("report-btn-2");
 	element.classList.add("d-none");
 
 	var crosshair = document.getElementById("crosshair");
@@ -137,11 +156,12 @@ function submitForm(e) {
 		crossDomain: true,
 		data: data,
 		success: function (data) {
-			alert("Paldies par ziņojumu!");
+			alert("Paldies par veloslazdu!");
 			location.reload();
 		},
 		error: function (jXHR, textStatus, errorThrown) {
-			alert("Kļūda: " + textStatus + " "+ errorThrown);
+			alert("Pārliecinies, vai esi pievienojis veloslazdam kategoriju un nosaukumu!"+
+			    " Ja neizdodas pievienot punktu, raksti uz info@datuskola.lv");
 		}
 	});
 }
@@ -154,6 +174,7 @@ $(window).on("load", function() {
 	includeHtml('html/choose-place.html', 'choose-place');
 	includeHtml('html/report.html', 'report');
 	includeHtml('html/vote-top.html', 'vote-top');
+	includeHtml('html/about-us.html', 'about-us');
 
 	$("#myimg").change(function(){
 		setImg(this);
