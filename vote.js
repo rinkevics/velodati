@@ -6,8 +6,9 @@
 		if(token == null) {
 			$('#voteLogin').modal('show'); 
 		} else {
-			var user = getCookie("user");
-			statusChangeCallback(user, token);
+		    login();
+//			var user = getCookie("user");
+//			statusChangeCallback(user, token);
 		}
 	}
 
@@ -19,7 +20,12 @@
 			version    : 'v3.3'
 		});
 			
-		FB.AppEvents.logPageView();   
+		FB.AppEvents.logPageView();
+
+		FB.Event.subscribe('auth.authResponseChange', function(response) {
+            console.log('The status of the session changed to: '+response.status);
+            alert(response.status);
+        });
 	};
 
 	(function(d, s, id){
@@ -29,7 +35,6 @@
 		js.src = "https://connect.facebook.net/en_US/sdk.js";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
-
 
 	function login() {
 		FB.getLoginStatus(function(response) {

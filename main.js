@@ -53,6 +53,7 @@ function initMap() {
 				marker.bindPopup("<div id='popup'>"+
 					"<img src='/app/files/" + data[i].img + "' id='popup-image'/><br/>"+
 					data[i].description + "<br/>" +
+					"<a href='/logout' onclick='FB.logout();'>Logout</a>" +
 					"Balsot <button type='button' id='btnLike' class='btn btn-outline-success' "+
 						"style='margin-top: 10px; margin-bottom: 10px;' onclick='startVote("+ data[i].id+ ")'>👍</button>"+
 						"</div>");
@@ -173,7 +174,7 @@ function createVoteTopPage() {
 $(window).on("load", function() {
 	includeHtml('html/choose-place.html', 'choose-place');
 	includeHtml('html/report.html', 'report');
-	includeHtml('html/vote-top.html', 'vote-top');
+//	includeHtml('html/vote-top.html', 'vote-top');
 	includeHtml('html/about-us.html', 'about-us');
 
 	$("#myimg").change(function(){
