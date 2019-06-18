@@ -142,15 +142,10 @@ body {
     }
 }
 
-
-.image {
-  	border: 3px solid #73AD21;
-}
-
 .vote-top-place {
 	padding: 10px;
 	margin-right: 10px;
-    background-color:  gray;
+    background-color: #e2e6ea;
     float: right;
 }
 
@@ -160,11 +155,24 @@ body {
 
 .vote-top-img {
     max-height: 300px;
-    max-width: 100%;
+    max-width: 80%;
     float: right;
 }
 
-.vote-top-text {
+.vote-top-title {
+    font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+}
+
+#description-label {
+    background: #e9ecef;
+    border: 1px solid #e2e6ea;
+    padding: 10px;
+    margin-bottom: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 #description {

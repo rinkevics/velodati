@@ -174,7 +174,7 @@ function createVoteTopPage() {
 $(window).on("load", function() {
 	includeHtml('html/choose-place.html', 'choose-place');
 	includeHtml('html/report.html', 'report');
-//	includeHtml('html/vote-top.html', 'vote-top');
+	includeHtml('html/vote-top.html', 'vote-top');
 	includeHtml('html/about-us.html', 'about-us');
 
 	$("#myimg").change(function(){
