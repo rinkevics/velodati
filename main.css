@@ -99,6 +99,19 @@ body {
 	top: 100px;
 }
 
+
+#datuskola {
+	z-index: 1000;
+
+	width: 60px;
+	height: 60px;
+
+	position: absolute;
+
+	right: 0;
+	bottom: 30%;
+}
+
 #select-location-btn {
 	position: fixed;
 	top: 85%;
@@ -116,10 +129,10 @@ body {
 
     #logo {
         position: fixed;
-        top: 5%;
-        left: 150px;
-        width: 230px;
-        margin-left: -115px;
+        top: 30px;
+        left: 40px;
+        width: 60%;
+        max-width: 230px;
         z-index: 1000;
     }
 
@@ -134,7 +147,7 @@ body {
         position: absolute;
         top: 20px;
         left: 0;
-        width: 200px;
+        width: 230px;
     }
 
     .vote-top-row {
@@ -163,7 +176,7 @@ body {
     font-size: 24px;
     font-weight: bold;
     font-style: italic;
-    text-align: center;
+    textv-align: center;
 }
 
 #description-label {
@@ -210,7 +223,7 @@ body {
 		position: fixed;
 		top: 85%;
 		left: 50%;
-		margin-left: -50px;
+		margin-left: -75px;
 		z-index: 1000;
 	}
 }
@@ -269,4 +282,8 @@ body {
 
 .navbar-custom .navbar-toggler-icon {
 	background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")
+}
+
+.ttext {
+    font-size: 12px;
 }

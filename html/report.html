@@ -7,31 +7,37 @@
 		<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLongTitle"><b><i>Ziņo!</i></b></h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal" >
 					<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
 						<div class="input-group input-row">
-							<select class="custom-select" id="type" name="type" required>
-								<option selected>Izvēlies kategoriju</option>
-								<option value="1">Šaurība, nepārredzamība</option>
-								<option value="2">Strauji pagriezieni</option>
-								<option value="3">Segums (bedres, bīstamas apmales)</option>
+							<select class="custom-select ttext" id="type" name="type" required
+									oninvalid="setCustomValidity('aizpildi mani')"
+									oninput="setCustomValidity('')" >
+								<option value="" selected class="ttext">Izvēlies kategoriju</option>
+								<option value="1" class="ttext">Šaurība, nepārredzamība</option>
+								<option value="2" class="ttext">Strauji pagriezieni</option>
+								<option value="3" class="ttext">Segums (bedres, bīstamas apmales)</option>
 							</select>
 						</div>
 	
-						<div class="input-group input-row">
-							<label for="description" id="description-label">
-								Dod punktam nosaukumu! Piemēram, “Pīļu un Mednieku ielas krustojums”, “Tilta uzbrauktuve”
+						<div class="input-group input-row ttext">
+							<label for="description" id="description-label" class="ttext" >
+								Dod punktam nosaukumu! Piemēram, “Pīļu un Mednieku ielas krustojums”, “Tilta uzbrauktuve” 2
 							</label>
-							<textarea class="form-control" name="description" id="description" required></textarea>
+							<textarea class="form-control" name="description" id="description" required
+									  oninvalid="setCustomValidity('aizpildi mani')"
+									  oninput="setCustomValidity('')" ></textarea>
 						</div>
 
 						<div class="input-group input-row">
 							<div class="custom-file">
-							<input type="file" class="custom-file-input" name="myimg" id="myimg" required>
+							<input type="file" class="custom-file-input" name="myimg" id="myimg" required
+								   oninvalid="setCustomValidity('Izvēlies attēlu!')"
+								   oninput="setCustomValidity('')">
 							<label class="custom-file-label" for="myimg">Pievieno attēlu</label>
 							</div>
 						</div>
