@@ -4,6 +4,7 @@ html {
 
 * {
     font-family: 'Space Mono', monospace;
+    -webkit-overflow-scrolling: touch;
 }
 
 body {
