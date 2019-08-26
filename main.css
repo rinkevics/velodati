@@ -242,13 +242,26 @@ body {
 }
 
 #popup {
-    display:block;
-    width: 100px;
+    width: 200px;
 }
 
 #popup-image {
-    margin-bottom: 10px;
-    max-width:100px;
+    max-width: 100%;
+}
+
+.mycontainer {
+    display: grid;
+
+    grid-template-columns: 200px;
+    grid-row-gap: 10px;
+}
+
+.gridbox-right {
+    justify-self: end;
+}
+
+.gridbox-left {
+    justify-self: start;
 }
 
 
@@ -287,4 +300,8 @@ body {
 
 .ttext {
     font-size: 12px;
+}
+
+#btnLike {
+	color: black;
 }
