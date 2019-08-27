@@ -34,6 +34,7 @@ function initMap() {
 		.then(data => {
 
 			window.votes = data.votes;
+			window.places = data.places;
 		    var places = data.places;
 
             var greenIcon = L.icon({
@@ -112,6 +113,58 @@ function setImg(input) {
 	}
 }
 
+function showVoteTop() {
+
+	$('#vote-top').modal('show');
+	
+	fetch('/app/top',
+		{
+			method: 'GET',
+			cache: 'no-cache'
+		})
+		.then(response => {
+			return response.json()
+		})
+		.then(data => {
+			for(let type = 1; type <= 3; type++) {
+				let element = document.getElementById("type" + type);
+				let result = "";
+				for(let i = 0; i < 3; i++) {
+					let idx = type - 1;
+
+					let topPlace = data[idx][i];
+					if(!topPlace) {
+						continue;
+					}
+
+					let places = window.places;
+					let id = topPlace[0];
+					let voteCount = topPlace[1];
+					let place = null;
+					for(let j = 0; j < places.length; j++) {
+						if(places[j].id ==	 id) {
+							place = places[j];
+						}
+					}
+
+					if(!place) {
+						continue;
+					}
+
+					result += `<div class="image">
+						<img class="vote-top-img" src='/app/files/${place.img}' /> 
+						<div class="vote-top-place">${i + 1}</div>
+					</div>
+					<div class="vote-top-text">${place.description}</div>`;
+				}
+				element.innerHTML = result;
+			}
+		})
+		.catch(e => alert(e));
+
+		
+}
+
 $(window).on("load", function() {
     includeHtml('html/start.html', 'start');
 	includeHtml('html/choose-place.html', 'choose-place');
@@ -127,8 +180,15 @@ $(window).on("load", function() {
 	
 	initMap();
 
+	window.setImg = setImg;
+	window.showVoteTop = showVoteTop;
 	window.voteService = new VoteService();
 	window.facebookService = new FacebookService();
 
 	let addPlace = new AddPlace();
 });
+
+
+
+
+

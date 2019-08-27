@@ -32,7 +32,7 @@ export class VoteService {
 			if(btnLike.classList.contains('btn-success')) {
 				doUpvote = false;
 			}
-			
+						
 			if(doUpvote) {
 				btnLike.classList.remove('btn-outline-success');
 				btnLike.classList.add('btn-success');

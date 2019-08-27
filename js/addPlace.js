@@ -2,7 +2,7 @@
 export class AddPlace {
     constructor () {
         $("#myimg").change(function(){
-            setImg(this);
+            window.setImg(this);
         });
     
         let that = this;
