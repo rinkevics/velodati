@@ -23,8 +23,8 @@ function initMap() {
 
 	window.group = L.markerClusterGroup({
 		chunkedLoading: true,
-		//singleMarkerMode: true,
-		spiderfyOnMaxZoom: false
+		//disableClusteringAtZoom: 17,
+		spiderfyOnMaxZoom: true
 	  });
 
 	fetch('/app/places')
@@ -32,10 +32,11 @@ function initMap() {
 			return response.json()
 		})
 		.then(data => {
-
+			const PI = 3.141593;
+			console.log(PI);
 			window.votes = data.votes;
 			window.places = data.places;
-		    var places = data.places;
+		    let places = data.places;
 
             var greenIcon = L.icon({
                 iconUrl: 'images/location.png',
@@ -152,8 +153,9 @@ function showVoteTop() {
 					}
 
 					result += `<div class="image">
-						<img class="vote-top-img" src='/app/files/${place.img}' /> 
+						<img class="vote-top-img" src='/app/files/2${place.img}' />
 						<div class="vote-top-place">${i + 1}</div>
+						<div class="vote-top-count">${voteCount}</div>
 					</div>
 					<div class="vote-top-text">${place.description}</div>`;
 				}
@@ -171,7 +173,7 @@ $(window).on("load", function() {
 	includeHtml('html/report.html', 'report');
 	includeHtml('html/vote-top.html', 'vote-top');
 	includeHtml('html/about-us.html', 'about-us');
-	
+
 	let visited = getCookie("visited");
 	if(!visited) {
 		$('#start').modal('show');
@@ -187,8 +189,3 @@ $(window).on("load", function() {
 
 	let addPlace = new AddPlace();
 });
-
-
-
-
-

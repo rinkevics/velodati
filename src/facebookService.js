@@ -59,7 +59,7 @@ export class FacebookService {
                 $('#loginModal').modal('hide');
 				window.storeHttpOnlyCookie(token);
 			} else {
-				console.log(response);
+				//console.log(response);
 			}
 		});
     }

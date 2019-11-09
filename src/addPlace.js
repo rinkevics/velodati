@@ -17,6 +17,10 @@ export class AddPlace {
             $('#report').modal('show');
             that.hideCrosshair();
         });
+        
+        $(document).on("click", "#cancel-btn", function(event){
+            that.hideCrosshair();
+        });
     
         $('#myform').on('submit', function(e) {
             that.submitForm(e);
@@ -55,8 +59,11 @@ export class AddPlace {
         var crosshair = document.getElementById("crosshair");
         crosshair.classList.remove("hidden");
 
-        var element3 = document.getElementById("select-location-btn");
-        element3.classList.remove("d-none");
+        var selectLocationButton = document.getElementById("select-location-btn");
+        selectLocationButton.classList.remove("d-none");
+
+        var cancelButton = document.getElementById("cancel-btn");
+        cancelButton.classList.remove("d-none");
 
         this.centerCrosshair();
     }
@@ -90,6 +97,10 @@ export class AddPlace {
         document.getElementById("lon").value = latlon.lng;
     }
 
+    onCancel() {
+        this.hideCrosshair();
+    }
+
     hideCrosshair() {
         var element = document.getElementById("report-btn");
         element.classList.remove("d-none");
@@ -97,8 +108,11 @@ export class AddPlace {
         var element2 = document.getElementById("crosshair");
         element2.classList.add("hidden");
 
-        var element3 = document.getElementById("select-location-btn");
-        element3.classList.add("d-none");
+        var selectLocationButton = document.getElementById("select-location-btn");
+        selectLocationButton.classList.add("d-none");
+
+        var cancelButton = document.getElementById("cancel-btn");
+        cancelButton.classList.add("d-none");
     }
 
     setCurrentLocation() {
@@ -110,5 +124,7 @@ export class AddPlace {
                 window.mymap.setView([lat, lon], window.mymap.getZoom());
             });
     }
+
+
 
 }
