@@ -34,3 +34,11 @@ export function getCookie(name) {
 export function eraseCookie(name) {
 		document.cookie = name+'=; Max-Age=-99999999;';  
 }
+
+export function hideSpinner() {
+    document.getElementById("cover").style.display = "none";
+}
+
+export function showSpinner() {
+    document.getElementById("cover").style.display = "block";
+}

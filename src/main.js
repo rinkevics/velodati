@@ -32,8 +32,6 @@ function initMap() {
 			return response.json()
 		})
 		.then(data => {
-			const PI = 3.141593;
-			console.log(PI);
 			window.votes = data.votes;
 			window.places = data.places;
 		    let places = data.places;

@@ -24,8 +24,6 @@ export class VoteService {
 		.catch(e => alert(e));
 	}
 
-
-	
 	doVote(placeID) {
 		window.placeID = placeID;
 		window.facebookService.loginIfNeeded(() => {

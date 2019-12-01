@@ -1,3 +1,4 @@
+import { showSpinner, hideSpinner } from './utils.js';
 
 export class AddPlace {
     constructor () {
@@ -30,6 +31,7 @@ export class AddPlace {
     submitForm(e) {
         var data = new FormData($('#myform')[0]);
         e.preventDefault();
+        showSpinner();
         $.ajax({
             url : '/app/up',
             type: "POST",
@@ -39,10 +41,12 @@ export class AddPlace {
             crossDomain: true,
             data: data,
             success: function (data) {
+                hideSpinner();
                 alert("Paldies par veloslazdu!");
                 location.reload();
             },
             error: function (jXHR, textStatus, errorThrown) {
+                hideSpinner();
                 alert("Pārliecinies, vai esi pievienojis veloslazdam kategoriju un nosaukumu!"+
                     " Ja neizdodas pievienot punktu, raksti uz info@datuskola.lv");
             }
