@@ -10,22 +10,20 @@
 	<link rel="icon" href="/favicon.png?fit=32%2C32" sizes="32x32"/>
 
 	<link rel="stylesheet" href="lib/leaflet.css"  crossorigin=""/>
-	<script src="lib/leaflet.js" crossorigin=""></script>
-	<link rel="stylesheet" href="spin.css" />
+	
 	<link rel="stylesheet" href="public/main.{{hashcss}}.css" />
-
-	<script src="dist/leaflet.markercluster.js" crossorigin=""></script>
 	<link rel="stylesheet" href="dist/MarkerCluster.css" />
 	<link rel="stylesheet" href="dist/MarkerCluster.Default.css" />
-
 	<link rel="stylesheet" href="lib/bootstrap.min.css" crossorigin="anonymous">
+	
+	<script src="https://www.google.com/recaptcha/api.js?render=6LdfLOEUAAAAAAGmzOyh5Kk08M98p5sWceMN9HVc"></script>
 	
 </head>
 <body>
 
-<div id="cover">
-	<div class="loader"></div>
-</div>
+	<div id="cover">
+		<div class="loader"></div>
+	</div>
 
 	<div class="wrapper">
 		<div class="box box-1">
@@ -112,7 +110,7 @@
 			<div class="modal-body">
 				<!--<a href="/logout" onclick="FB.logout();">Logout</a>-->
 				Lai balsotu, pieslēdzies ar Facebook.
-				<fb:login-button scope="public_profile,email" onlogin="login();">
+				<fb:login-button scope="public_profile,email" onlogin="window.facebookService.onLogin()">
 				</fb:login-button>
 			</div>
 			<div class="modal-barter">
@@ -122,12 +120,23 @@
 		</div>
 	</div>
 
+	<script src="lib/leaflet.js" crossorigin=""></script>
+	<script src="dist/leaflet.markercluster.js" crossorigin=""></script>
 	<script src="lib/jquery-3.4.0.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
 		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="lib/bootstrap.min.js" crossorigin="anonymous"></script>
 
 <script src="public/bundle.{{hashjs}}.js" type="module" ></script>
+
+<script>
+	grecaptcha.ready(function() {
+		grecaptcha.execute('6LdfLOEUAAAAAAGmzOyh5Kk08M98p5sWceMN9HVc', {action: 'homepage'}).then(function(token) {
+			console.log(token);
+
+		});
+	});
+	</script>
 
 </body>
 </html>

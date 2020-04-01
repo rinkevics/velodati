@@ -2,7 +2,7 @@ import { showSpinner, hideSpinner } from './utils.js';
 
 export class AddPlace {
     constructor () {
-        $("#myimg").change(function(){
+        $("#uploadimage").change(function(){
             window.setImg(this);
         });
     
@@ -33,7 +33,7 @@ export class AddPlace {
         e.preventDefault();
         showSpinner();
         $.ajax({
-            url : '/app/up',
+            url : '/app/upload',
             type: "POST",
             contentType: 'multipart/form-data',
             processData: false,
@@ -128,7 +128,5 @@ export class AddPlace {
                 window.mymap.setView([lat, lon], window.mymap.getZoom());
             });
     }
-
-
 
 }

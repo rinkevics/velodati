@@ -34,15 +34,32 @@ function initMap() {
 		.then(data => {
 			window.votes = data.votes;
 			window.places = data.places;
-		    let places = data.places;
+			let places = data.places;
+						
+			const icons = [];
 
-            var greenIcon = L.icon({
+			let iconSize = [91, 99]; // size of the icon
+			let iconAnchor = [45, 75]; // point of the icon which will correspond to marker's location
+			let popupAnchor = [-3, -76]; // point from which the popup should open relative to the iconAnchor
+
+			icons[1] = L.icon({
                 iconUrl: 'images/location.png',
-
-                iconSize:     [91, 99], // size of the icon
-                iconAnchor:   [45, 75], // point of the icon which will correspond to marker's location
-                popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-            });
+                iconSize:     iconSize,
+                iconAnchor:   iconAnchor,
+                popupAnchor:  popupAnchor
+			});
+			icons[2] = L.icon({
+                iconUrl: 'images/location2.png',
+                iconSize:     iconSize,
+                iconAnchor:   iconAnchor,
+                popupAnchor:  popupAnchor
+			});
+			icons[3] = L.icon({
+                iconUrl: 'images/location3.png',
+                iconSize:     iconSize,
+                iconAnchor:   iconAnchor,
+                popupAnchor:  popupAnchor
+			});
 
 			for(var i = 0; i < places.length; i++) {
 
@@ -55,7 +72,7 @@ function initMap() {
 				var marker = L.marker(
 					[places[i].lat, places[i].lon], 
 					{
-						icon: greenIcon, 
+						icon: icons[places[i].placeType], 
 						place: places[i]
 					});
 
@@ -95,7 +112,7 @@ function initMap() {
 			window.mymap.addLayer(window.group);
 		})
 		.catch(err => {
-			alert(err);
+			alert("e2 "+ err);
 		});
 }
 
@@ -126,11 +143,16 @@ function showVoteTop() {
 		})
 		.then(data => {
 			for(let type = 1; type <= 3; type++) {
+				let idx = type - 1;
+
+				if(!data || !data[idx]) {
+					continue;
+				}
+
 				let element = document.getElementById("type" + type);
 				let result = "";
 				for(let i = 0; i < 3; i++) {
-					let idx = type - 1;
-
+					
 					let topPlace = data[idx][i];
 					if(!topPlace) {
 						continue;
@@ -160,9 +182,7 @@ function showVoteTop() {
 				element.innerHTML = result;
 			}
 		})
-		.catch(e => alert(e));
-
-		
+		.catch(e => alert("e1"+ e));
 }
 
 $(window).on("load", function() {

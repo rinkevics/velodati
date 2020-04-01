@@ -8,15 +8,15 @@ export class FacebookService {
     }
 
     init() {
-        window.login = () => window.facebookService.login();
         window.storeHttpOnlyCookie = (token) => window.facebookService.storeHttpOnlyCookie(token);
-
+        
         window.fbAsyncInit = function() {
             FB.init({	
-                appId      : '273875460184611',
-                cookie     : true,
-                xfbml      : true,
-                version    : 'v3.3' 
+                appId   : '273875460184611',
+                cookie  : true,
+                status  : true,
+                xfbml   : true,
+                version : 'v3.3' 
             });
             
             FB.AppEvents.logPageView();
@@ -24,9 +24,8 @@ export class FacebookService {
             FB.Event.subscribe('auth.authResponseChange', function(response) {
                 console.log('The status of the session changed to: '+response.status);
             });
-
-            window.loginCallback = () => this.window.voteService.fetchMyVotes();
-            window.facebookService.login();            
+            
+            window.facebookService.onLogin();
         };
         
         (function(d, s, id){
@@ -38,51 +37,85 @@ export class FacebookService {
         }(document, 'script', 'facebook-jssdk'));
         
     }
-    
-    loginIfNeeded(loginCallback) {
-        $('#loginModal').modal('hide');
-        var token = getCookie("token");
-        if(token == null) {
-            window.loginCallback = loginCallback;
-            $('#loginModal').modal('show'); 
-        } else {
-            window.loginCallback = loginCallback;
-            window.facebookService.login();	
-        }
+
+    onLogin() {
+        this.checkFBLoginStatus()
+            .then(token => {
+                return window.facebookService.storeHttpOnlyCookie(token);
+            }) 
+            .then(token => {
+                window.voteService.fetchMyVotes();
+                return token;
+            })
+            .then(
+                token => {
+                    if(window.loginCallback) {
+                        window.loginCallback(token);
+                        window.loginCallback = null;
+                    }
+                    return token;
+                },
+                () => {
+                    throw "FB not logged in";
+                })
+            .catch(e => {
+                console.log(e);
+            });
     }
     
-	login() {
-		FB.getLoginStatus(function(response) {
-			if(response.status == "connected") {
-				var token = response.authResponse.accessToken;
-                setCookie("token", token, 1);
-                $('#loginModal').modal('hide');
-				window.storeHttpOnlyCookie(token);
-			} else {
-				//console.log(response);
-			}
-		});
+    loginIfNeeded() {
+        return new Promise( (resolutionFunc, rejectionFunc) => {
+
+            $('#loginModal').modal('hide');
+            
+            const onLoggedIn = () => {
+                window.facebookService.onLogin();
+                resolutionFunc();
+            };
+            const onNotLoggedIn = () => {
+                window.loginCallback = token => { 
+                    $('#loginModal').modal('hide');
+                    resolutionFunc(token);
+                };
+                $('#loginModal').modal('show'); 
+            };
+            window.facebookService.checkFBLoginStatus()
+                .then(onLoggedIn, onNotLoggedIn);
+            
+        });
+    }
+    
+    checkFBLoginStatus() {
+        return new Promise( (resolutionFunc, rejectionFunc) => {
+            FB.getLoginStatus(function(response) {
+                if(response.status == "connected") {
+                    var token = response.authResponse.accessToken;
+                    resolutionFunc(token);
+                } else {
+                    rejectionFunc(response);
+                }
+            });
+        });
     }
 
     storeHttpOnlyCookie(token) {
-		$.ajax({
-            url : "/app/login",
-            type: "POST",
-            processData: false,
-            crossDomain: true,
-            headers: {
-                "token":token
-            },
-            data: "",
-            success: function (data) {
-                if(window.loginCallback) {
-                    window.loginCallback();
+        return new Promise( (resolutionFunc, rejectionFunc) => {
+            $.ajax({
+                url : "/app/login",
+                type: "POST",
+                processData: false,
+                crossDomain: true,
+                headers: {
+                    "token":token
+                },
+                data: "",
+                success: function () {
+                    resolutionFunc();
+                },
+                error: function (jXHR, textStatus, errorThrown) {
+                    console.log("Error in storeHttpOnlyCookie: "+ errorThrown);
                 }
-                window.loginCallback = null;
-            },
-            error: function (jXHR, textStatus, errorThrown) {
-                alert("Error in storeHttpOnlyCookie: "+ errorThrown);
-            }
+            });            
         });
     }
     	

@@ -10,14 +10,18 @@ export function includeHtml(url, id) {
 	xhr.send();
 }
 
-export function setCookie(name,value,days) {
+export function setCookie(name,value,days, isSecure) {
 	var expires = "";
 	if (days) {
 		var date = new Date();
 		date.setTime(date.getTime() + (days*24*60*60*1000));
 		expires = "; expires=" + date.toUTCString();
 	}
-	document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+	let secure = "";
+	if (isSecure) {
+		secure = "; secure; HttpOnly";
+	}
+	document.cookie = name + "=" + (value || "")  + expires + "; path=/" + secure;
 }
 
 export function getCookie(name) {

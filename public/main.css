@@ -131,13 +131,24 @@ body {
 
 #box1 {
 	position: fixed;
-	bottom: 100px;
 	left: 50%;
 	width: 280px;
 	margin-left: -90px;
 	z-index: 1000;
 
   	display: block;
+}
+
+@media only screen and (min-width: 992px) {
+	#box1 {
+		bottom: 100px;
+	}
+}
+
+@media only screen and (max-width: 991px) {
+	#box1 {
+		bottom: 40px;
+	}
 }
 
 #select-location-btn {
@@ -147,14 +158,15 @@ body {
 }
 
 #cancel-btn {
-    width: 80px;
-    height: 40px;
+    width: 50px;
+    height: 34px;
 }
 
 #cancel {
-    width: 30px;
-    height: 34px;
-    padding-bottom: 4px;
+    width: 20px;
+    height: 24px;
+	position: relative;
+	bottom: 6px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -176,6 +188,10 @@ body {
 		display: grid;
 		grid-template-columns: 180px 100px;
 		grid-gap: 20px;
+	}
+	
+	#cancel-btn {
+		margin-top: 3px;
 	}
 }
 
