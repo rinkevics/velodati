@@ -142,15 +142,23 @@ function showVoteTop() {
 			return response.json()
 		})
 		.then(data => {
+
+			let titles = [
+				"Šaurība / nepārredzamība",
+				"Strauji pagriezieni",
+				"Segums (bedres, bīstamas apmales)"
+			 ];
+			let contentElement = document.getElementById("top-content");
+			let result = "";
+
 			for(let type = 1; type <= 3; type++) {
 				let idx = type - 1;
 
 				if(!data || !data[idx]) {
 					continue;
 				}
-
-				let element = document.getElementById("type" + type);
-				let result = "";
+				
+				let top3 = "";
 				for(let i = 0; i < 3; i++) {
 					
 					let topPlace = data[idx][i];
@@ -172,15 +180,27 @@ function showVoteTop() {
 						continue;
 					}
 
-					result += `<div class="image">
-						<img class="vote-top-img" src='/app/files/2${place.img}' />
-						<div class="vote-top-place">${i + 1}</div>
-						<div class="vote-top-count">${voteCount}</div>
-					</div>
-					<div class="vote-top-text">${place.description}</div>`;
+					/*<div class="top-txt">${voteCount}</div>*/
+
+					top3 += `<div class="top-item">
+						<div class="top-image-box">
+							<img class="top-image" src='/app/files/2${place.img}'/> 
+						</div>				
+						<div class="top-number">${i + 1}</div>
+						<div class="top-text">${place.description}</div>
+					</div>`;
+				}				
+
+				if(top3.length > 0) {
+					result += 
+						`<div class="vote-top-title">${type}- ${titles[idx]}</div>
+						<div class="vote-top-row" id="type${type}">
+							${top3}
+						</div>`;
 				}
-				element.innerHTML = result;
+				
 			}
+			contentElement.innerHTML = result;
 		})
 		.catch(e => alert("e1"+ e));
 }
