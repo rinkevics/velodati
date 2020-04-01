@@ -362,8 +362,16 @@ body {
     width: 200px;
 }
 
-#popup-image {
-    max-width: 100%;
+.popup-image {
+	max-width: 100%;
+	display: block;
+    margin: auto;
+}
+
+.popup-noimage {
+	max-width: 50%;
+	display: block;
+    margin: auto;
 }
 
 .mycontainer {

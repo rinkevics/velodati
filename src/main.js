@@ -93,9 +93,16 @@ function initMap() {
 						upvoteClass = "btn-outline-success";
 					}
 
+					let imgSrc = "/images/noimage.png";
+					let imgClass = "popup-noimage";
+					if(place.img && place.img.length > 0) {
+						imgSrc = "/app/files/" + place.img;
+						imgClass = "popup-image";
+					}
+
 					return `<div id='popup' class='mycontainer'>
 								<div class='gridbox-left'> 
-									<img src='/app/files/${place.img}' id='popup-image'/> </div>
+									<img src='${imgSrc}' class='${imgClass}'/> </div>
 
 								<div class='gridbox-left'>
 									${place.description}</div>
@@ -180,11 +187,16 @@ function showVoteTop() {
 						continue;
 					}
 
+					let imgSrc = "/images/noimage.png";
+					if(place.img && place.img.length > 0) {
+						imgSrc = "/app/files/2" + place.img;
+					}
+
 					/*<div class="top-txt">${voteCount}</div>*/
 
 					top3 += `<div class="top-item">
 						<div class="top-image-box">
-							<img class="top-image" src='/app/files/2${place.img}'/> 
+							<img class="top-image" src='${imgSrc}'/> 
 						</div>				
 						<div class="top-number">${i + 1}</div>
 						<div class="top-text">${place.description}</div>
