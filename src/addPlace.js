@@ -74,14 +74,18 @@ export class AddPlace {
 
     centerCrosshair() {
         var map = document.getElementById("main");
+        var turpinat = document.getElementById("box1");
+        var topRow = document.getElementById("top-row");
 
         var top = map.offsetTop;
         var left = map.offsetLeft;
-        var height = map.offsetHeight;
+        var height = turpinat.offsetTop - topRow.offsetHeight;
         var width = map.offsetWidth;
 
-        var x = left + width / 2 - 20;
-        var y = top + height / 2 - 20;
+        var x = left + (width / 2) - 20;
+        var y = top + (height / 2) - 20;
+
+        //console.log(`x: ${x} y: ${y}`);
 
         var crosshair = document.getElementById("crosshair");
         crosshair.style.left = x + "px";
@@ -90,8 +94,6 @@ export class AddPlace {
 
     getCrosshairLocation() {	
         var topRowHeight = $('#top-row').height();
-        var offset = $('#crosshair').offset();
-
         var crosshair = document.getElementById("crosshair");
         
         var point = L.point( crosshair.offsetLeft + 20, crosshair.offsetTop - topRowHeight );
@@ -101,12 +103,11 @@ export class AddPlace {
         document.getElementById("lon").value = latlon.lng;
     }
 
-    onCancel() {
-        this.hideCrosshair();
-    }
-
     hideCrosshair() {
         var element = document.getElementById("report-btn");
+        element.classList.remove("d-none");
+        
+        var element = document.getElementById("report-btn-2");
         element.classList.remove("d-none");
 
         var element2 = document.getElementById("crosshair");
