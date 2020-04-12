@@ -214,7 +214,7 @@ function showVoteTop() {
 			}
 			contentElement.innerHTML = result;
 		})
-		.catch(e => alert("e1"+ e));
+		.catch(e => console.log("e1"+ e));
 }
 
 $(window).on("load", function() {

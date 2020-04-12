@@ -10,7 +10,7 @@ export function includeHtml(url, id) {
 	xhr.send();
 }
 
-export function setCookie(name,value,days, isSecure) {
+export function setCookie(name, value, days, isSecure) {
 	var expires = "";
 	if (days) {
 		var date = new Date();

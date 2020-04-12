@@ -1,4 +1,4 @@
-import { showSpinner, hideSpinner } from './utils.js';
+import { showSpinner, hideSpinner, setCookie, getCookie } from './utils.js';
 
 export class AddPlace {
     constructor () {
@@ -8,18 +8,19 @@ export class AddPlace {
     
         let that = this;
 
-        $(document).on("click", "#choose-location-btn", function(event){
+        $(document).on("click", "#choose-location-btn", () => {
             that.showCrosshair();
             that.setCurrentLocation();
         });
     
-        $(document).on("click", "#select-location-btn", function(event){
+        $(document).on("click", "#select-location-btn", () => {
             that.getCrosshairLocation();
             $('#report').modal('show');
+            that.retrieveEmailFromCookie();
             that.hideCrosshair();
         });
         
-        $(document).on("click", "#cancel-btn", function(event){
+        $(document).on("click", "#cancel-btn", () => {
             that.hideCrosshair();
         });
     
@@ -27,8 +28,9 @@ export class AddPlace {
             that.submitForm(e);
         });
     }
-    
+
     submitForm(e) {
+        this.storeEmailInCookie();
         var data = new FormData($('#myform')[0]);
         e.preventDefault();
         showSpinner();
@@ -85,8 +87,6 @@ export class AddPlace {
         var x = left + (width / 2) - 20;
         var y = top + (height / 2) - 20;
 
-        //console.log(`x: ${x} y: ${y}`);
-
         var crosshair = document.getElementById("crosshair");
         crosshair.style.left = x + "px";
         crosshair.style.top = y + "px";
@@ -128,6 +128,19 @@ export class AddPlace {
                 
                 window.mymap.setView([lat, lon], window.mymap.getZoom());
             });
+    }
+    
+    retrieveEmailFromCookie() {
+        let emailElement = document.getElementById("email");
+        let email = getCookie("email");
+        if(email && email.length > 0) {
+            emailElement.value = email;
+        }
+    }
+    
+    storeEmailInCookie() {
+        let email = document.getElementById("email");
+        setCookie("email", email.value, 3, false);
     }
 
 }

@@ -14,9 +14,10 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<div class="input-group input-row">
-							<select class="custom-select ttext" id="type" name="type" required
+							<select class="custom-select ttext" id="type" name="type"
 									oninvalid="setCustomValidity('Aizpildi šo lauku!')"
-									oninput="setCustomValidity('')" >
+									oninput="setCustomValidity('')" 
+									required="true">
 								<option value="" selected class="ttext">Izvēlies kategoriju</option>
 								<option value="1" class="ttext">Šaurība, nepārredzamība</option>
 								<option value="2" class="ttext">Strauji pagriezieni</option>
@@ -28,19 +29,31 @@
 							<label for="description" id="description-label" class="ttext" >
 								Dod punktam nosaukumu! Piemēram, “Pīļu un Mednieku ielas krustojums”, “Tilta uzbrauktuve” 2
 							</label>
-							<textarea class="form-control" name="description" id="description" required
-									  oninvalid="setCustomValidity('Aizpildi šo lauku!	')"
-									  oninput="setCustomValidity('')" ></textarea>
+							<textarea class="form-control velo-form-text" name="description" id="description"
+									  oninvalid="setCustomValidity('Aizpildi šo lauku!')"
+									  oninput="setCustomValidity('')" 
+									  required="true"></textarea>
 						</div>
 
 						<div class="input-group input-row">
 							<div class="custom-file">
-							<input type="file" class="custom-file-input" name="uploadimage" id="uploadimage"
-								   oninvalid="setCustomValidity('Aizpildi šo lauku!')"
-								   oninput="setCustomValidity('')">
-							<label class="custom-file-label" for="uploadimage">Pievieno attēlu</label>
+							<input type="file" class="custom-file-input velo-form-text" name="uploadimage" id="uploadimage">
+							<label class="custom-file-label " for="uploadimage">Pievieno attēlu</label>
 							</div>
 						</div>
+
+						<div class="input-group input-row ttext">
+							<label for="email" id="email-label" class="ttext" >
+								Epasts (ar jums sazināsimies tikai tad, ja būs papildus jautājumi par šo vietu)
+							</label>
+							<input class="form-control velo-form-text" name="email" id="email"  required="true"
+									type="email" ></input>
+						</div>
+
+						<div class="velo-form-check">
+							<input type="checkbox" class="" id="subscribe" name="subscribe">
+							<label class="velo-form-text" for="subscribe">Vēlos saņemt datuskolas jaunumus</label>
+						</div>	
 
 						<div class="input-group	">
 							<img id='img-upload'/>
