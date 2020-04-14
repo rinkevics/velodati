@@ -14,7 +14,7 @@ body {
 
 
 #datuskola {
-	z-index: 2000;
+	z-index: 1000;
 	position: absolute;
 	right: 40px;
 	bottom: 40px;
