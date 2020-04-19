@@ -8,7 +8,7 @@ export class FacebookService {
 
     init() {
         window.loginfun = () => {
-            let uri = encodeURI("https://localhost/");
+            let uri = encodeURI(location.protocol + '//' + location.host + '/');
             window.location = encodeURI("https://www.facebook.com/dialog/oauth?client_id=273875460184611&redirect_uri="+uri+"&response_type=token");
         };
 
