@@ -1,12 +1,11 @@
 import { includeHtml } from './utils.js';
 import { FacebookService } from './facebookService.js';
 import { VoteService } from './voteService.js';
-import { setCookie } from './utils.js';
-import { getCookie } from './utils.js';
+import { setCookie, getCookie, findGetParameter } from './utils.js';
 import { AddPlace } from './addPlace.js';
 	
-function initMap() {	
-				
+function initMap() {
+
 	window.mymap = L.map(
 	    'mapid',
 	    { zoomControl: false }
@@ -61,13 +60,11 @@ function initMap() {
                 popupAnchor:  popupAnchor
 			});
 
-			for(var i = 0; i < places.length; i++) {
+			let openPlaceId = getCookie("placeId");
+			setCookie("placeId", null, 1, false);
 
-				var voteCountInput = data.votes[places[i].id];
-				var voteCount = "";
-				if(voteCountInput) {
-				    voteCount = "&nbsp;" + data.votes[places[i].id];
-				}
+			for(var i = 0; i < places.length; i++) {
+				let placeId = places[i].id;				
 
 				var marker = L.marker(
 					[places[i].lat, places[i].lon], 
@@ -100,6 +97,8 @@ function initMap() {
 						imgClass = "popup-image";
 					}
 
+					setCookie("placeId", place.id, 1, false);
+					
 					return `<div id='popup' class='mycontainer'>
 								<div class='gridbox-left'> 
 									<img src='${imgSrc}' class='${imgClass}'/> </div>
@@ -113,13 +112,30 @@ function initMap() {
 										onclick='doVote(${place.id})'>👍 <div id="voteCount">${voteCount}</div></button>
                     		</div>`;
 				});
+				
 				window.group.addLayer(marker);
-			}
-			
+				
+				if(window.isRedirectFromFB && placeId && placeId == openPlaceId) {
+					window.markerPoupup = marker;
+					window.lat = places[i].lat;
+					window.lon = places[i].lon;
+				}
+			}			
 			window.mymap.addLayer(window.group);
+			
+			if(window.markerPoupup) {
+				window.markerPoupup.openPopup();
+				window.mymap.setView([window.lat, window.lon], 13);
+								
+				history.replaceState(null, null, '/');
+				window.loginCallback = () => {
+					window.voteService.doVote(openPlaceId);
+				};
+				window.facebookService.onLogin();
+			}
 		})
 		.catch(err => {
-			alert("e2 "+ err);
+			console.log("e2 "+ err);
 		});
 }
 
@@ -230,12 +246,24 @@ $(window).on("load", function() {
 		setCookie("visited", true, 365);
 	}	
 	
+	let url = location.toString().split("?")[1];
+	if(url) {
+		window.isRedirectFromFB = url
+				.substring(1)
+				.split("&")
+				.map(parameter => parameter.split("="))
+				.filter(parameterValue => parameterValue[0] == "data_access_expiration_time")
+				.reduce(accumulator => accumulator + 1, 0);
+		console.log(`isRedirectFromFB ${isRedirectFromFB}`);
+	}
+
 	initMap();
 
 	window.setImg = setImg;
 	window.showVoteTop = showVoteTop;
 	window.voteService = new VoteService();
 	window.facebookService = new FacebookService();
+
 
 	let addPlace = new AddPlace();
 });

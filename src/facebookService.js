@@ -1,5 +1,4 @@
-import { getCookie } from './utils.js';
-import { setCookie } from './utils.js';
+import { getCookie, setCookie } from './utils.js';
 
 export class FacebookService {
     constructor(afterFBInit) {
@@ -8,6 +7,11 @@ export class FacebookService {
     }
 
     init() {
+        window.loginfun = () => {
+            let uri = encodeURI("https://localhost/");
+            window.location = encodeURI("https://www.facebook.com/dialog/oauth?client_id=273875460184611&redirect_uri="+uri+"&response_type=token");
+        };
+
         window.storeHttpOnlyCookie = (token) => window.facebookService.storeHttpOnlyCookie(token);
         
         window.fbAsyncInit = function() {
@@ -110,7 +114,7 @@ export class FacebookService {
                 },
                 data: "",
                 success: function () {
-                    resolutionFunc();
+                    resolutionFunc(token);
                 },
                 error: function (jXHR, textStatus, errorThrown) {
                     console.log("Error in storeHttpOnlyCookie: "+ errorThrown);
