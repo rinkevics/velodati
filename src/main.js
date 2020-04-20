@@ -100,8 +100,10 @@ function initMap() {
 					setCookie("placeId", place.id, 1, false);
 					
 					return `<div id='popup' class='mycontainer'>
-								<div class='gridbox-left'> 
-									<img src='${imgSrc}' class='${imgClass}'/> </div>
+								<div class='gridbox-left'>
+									<img id='small-image' src='${imgSrc}' class='${imgClass}'/> 
+									<img id='small-zoom-in' src="/images/zoom-in.png" >
+								</div>
 
 								<div class='gridbox-left'>
 									${place.description}</div>
@@ -204,15 +206,18 @@ function showVoteTop() {
 					}
 
 					let imgSrc = "/images/noimage.png";
+					let fullImgSrc = "";
 					if(place.img && place.img.length > 0) {
 						imgSrc = "/app/files/2" + place.img;
+						fullImgSrc = "/app/files/" + place.img;
 					}
 
 					/*<div class="top-txt">${voteCount}</div>*/
 
 					top3 += `<div class="top-item">
 						<div class="top-image-box">
-							<img class="top-image" src='${imgSrc}'/> 
+							<img class="top-image" src='${imgSrc}' full-src='${fullImgSrc}' /> 
+							<img id="top-zoom-in" src="/images/zoom-in.png" >
 						</div>				
 						<div class="top-number">${i + 1}</div>
 						<div class="top-text">${place.description}</div>
@@ -239,7 +244,8 @@ $(window).on("load", function() {
 	includeHtml('html/report.html', 'report');
 	includeHtml('html/vote-top.html', 'vote-top');
 	includeHtml('html/about-us.html', 'about-us');
-
+	includeHtml('html/big-image.html', 'big-image-box');
+	
 	let visited = getCookie("visited");
 	if(!visited) {
 		$('#start').modal('show');
@@ -264,6 +270,27 @@ $(window).on("load", function() {
 	window.voteService = new VoteService();
 	window.facebookService = new FacebookService();
 
+	window.showBigImage = imageSrc => {
+		if(imageSrc.length == 0 || imageSrc == "/images/noimage.png") {
+			return;
+		}
+		let elem = document.getElementById("big-image-src");
+		elem.setAttribute("src", imageSrc)
+		$('#big-image-box').modal('show');
+	};
 
 	let addPlace = new AddPlace();
+
+	$(document).on("click", "#small-image", () => {
+		let imageSrc = document.getElementById("small-image").getAttribute("src");
+		window.showBigImage(imageSrc);
+	});
+
+	$(document).on("click", ".top-image", e => {
+		let src = e.target.getAttribute("full-src");
+		window.showBigImage(src);
+	});
+
+	
+
 });

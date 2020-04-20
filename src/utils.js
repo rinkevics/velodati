@@ -40,11 +40,11 @@ export function eraseCookie(name) {
 }
 
 export function hideSpinner() {
-    document.getElementById("cover").style.display = "none";
+    document.getElementById("spinnerBox").style.display = "none";
 }
 
 export function showSpinner() {
-    document.getElementById("cover").style.display = "block";
+    document.getElementById("spinnerBox").style.display = "block";
 }
 
 export function findGetParameter(parameterName) {

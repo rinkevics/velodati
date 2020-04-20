@@ -1,6 +1,3 @@
-import { getCookie } from './utils.js';
-import { setCookie } from './utils.js';
-import { eraseCookie } from './utils.js';
 
 export class VoteService {
     constructor() {

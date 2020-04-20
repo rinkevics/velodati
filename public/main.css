@@ -220,6 +220,7 @@ body {
 .top-image {
 	width: 200px;
 	height: 200px; 
+	cursor: pointer;
 }
 
 .top-text {
@@ -445,7 +446,7 @@ body {
     width: auto;
 }
 
-#cover {
+.cover {
 	position:fixed;
 	top:0;
 	left:0;
@@ -472,6 +473,27 @@ body {
 
     -webkit-animation: spin 2s linear infinite; /* Safari */
     animation: spin 2s linear infinite;
+}
+
+#big-image {
+	width: max-content;
+	margin: 0 auto;
+}
+
+#small-image {
+	cursor: pointer;
+}
+
+#small-zoom-in {
+	position: relative;
+	bottom: 35px;
+	left: 165px;
+}
+
+#top-zoom-in {
+	position: relative;
+	bottom: 35px;
+	left: 165px;
 }
 
 /* Safari */
