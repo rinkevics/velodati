@@ -476,8 +476,13 @@ body {
 }
 
 #big-image {
-	width: max-content;
 	margin: 0 auto;
+	display: grid;
+}
+
+#big-image-src {
+	max-width: 765px;
+	place-self: center;
 }
 
 #small-image {
