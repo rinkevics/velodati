@@ -198,6 +198,7 @@ body {
 .top-item {
 	display: grid;
 	grid-template-columns: 30px auto;
+	grid-template-rows: 200px auto;
 	grid-template-areas:
 	"nr image"
 	"text text";
@@ -225,7 +226,6 @@ body {
 
 .top-text {
 	grid-area: text;
-	place-self: center;
 }
 
 .vote-top-row {
