@@ -21,23 +21,23 @@
 								<option value="" selected class="ttext">Izvēlies kategoriju</option>
 								<option value="1" class="ttext">Šaurība, nepārredzamība</option>
 								<option value="2" class="ttext">Strauji pagriezieni</option>
-								<option value="3" class="ttext">Segums (bedres, bīstamas apmales)</option>
+								<option value="3" class="ttext">Segums (bedres, augstas apmales)</option>
 							</select>
 						</div>
 	
 						<div class="input-group input-row ttext">
 							<label for="description" id="description-label" class="ttext" >
-								Dod punktam nosaukumu! Piemēram, “Pīļu un Mednieku ielas krustojums”, “Tilta uzbrauktuve” 2
+								Apraksti punktu! Piemēram, “Pīļu un Mednieku ielas krustojums bez apmalēm un luksafora"
 							</label>
 							<textarea class="form-control velo-form-text" name="description" id="description"
 									  oninvalid="setCustomValidity('Aizpildi šo lauku!')"
 									  oninput="setCustomValidity('')" 
-									  required="true"></textarea>
+									  maxlength="280"></textarea>
 						</div>
 
 						<div class="input-group input-row">
 							<div class="custom-file">
-							<input type="file" class="custom-file-input velo-form-text" name="uploadimage" id="uploadimage">
+							<input type="file" class="custom-file-input velo-form-text" name="uploadimage" id="uploadimage" required="true">
 							<label class="custom-file-label " for="uploadimage">Pievieno attēlu</label>
 							</div>
 						</div>
