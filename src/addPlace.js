@@ -1,4 +1,4 @@
-import { showSpinner, hideSpinner, setCookie, getCookie } from './utils.js';
+import { showSpinner, hideSpinner, setCookie, getCookie, getCaptcha } from './utils.js';
 
 export class AddPlace {
     constructor () {
@@ -30,32 +30,38 @@ export class AddPlace {
     }
 
     submitForm(e) {
+        showSpinner();
         this.storeEmailInCookie();
         var data = new FormData($('#myform')[0]);
         e.preventDefault();
-        showSpinner();
-        $.ajax({
-            url : '/app/upload',
-            type: "POST",
-            contentType: 'multipart/form-data',
-            processData: false,
-            contentType: false,
-            crossDomain: true,
-            data: data,
-            success: function (data) {
-                hideSpinner();
-                alert("Paldies par veloslazdu!");
-                location.reload();
-            },
-            error: function (jXHR, textStatus, errorThrown) {
-                hideSpinner();
-                alert("Pārliecinies, vai esi pievienojis veloslazdam kategoriju un nosaukumu!"+
-                    " Ja neizdodas pievienot punktu, raksti uz info@datuskola.lv");
-            }
+        getCaptcha().then(captcha => {
+            $.ajax({
+                url : '/app/upload',
+                type: "POST",
+                contentType: 'multipart/form-data',
+                processData: false,
+                contentType: false,
+                crossDomain: true,
+                headers: { 'x-captcha': captcha },
+                data: data,
+                success: function (data) {
+                    hideSpinner();
+                    alert("Paldies par veloslazdu!");
+                    location.reload();
+                },
+                error: function (jXHR, textStatus, errorThrown) {
+                    hideSpinner();
+                    alert("Pārliecinies, vai esi pievienojis veloslazdam kategoriju un nosaukumu!"+
+                        " Ja neizdodas pievienot punktu, raksti uz info@datuskola.lv");
+                }
+            });
         });
     }
 
     showCrosshair() {
+        var element = document.getElementById("color-codes");
+        element.classList.add("d-none");
+
         var element = document.getElementById("report-btn");
         element.classList.add("d-none");
 
@@ -103,7 +109,10 @@ export class AddPlace {
         document.getElementById("lon").value = latlon.lng;
     }
 
-    hideCrosshair() {
+    hideCrosshair() {        
+        var element = document.getElementById("color-codes");
+        element.classList.remove("d-none");
+
         var element = document.getElementById("report-btn");
         element.classList.remove("d-none");
         

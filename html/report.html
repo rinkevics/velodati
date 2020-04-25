@@ -18,10 +18,11 @@
 									oninvalid="setCustomValidity('Aizpildi šo lauku!')"
 									oninput="setCustomValidity('')" 
 									required="true">
-								<option value="" selected class="ttext">Izvēlies kategoriju</option>
-								<option value="1" class="ttext">Šaurība, nepārredzamība</option>
-								<option value="2" class="ttext">Strauji pagriezieni</option>
-								<option value="3" class="ttext">Segums (bedres, augstas apmales)</option>
+								<option value="" selected class="dropdown-text">Izvēlies kategoriju</option>
+								<option value="1" class="dropdown-text dropdown-color-1">Šaurība, nepārredzamība </option>
+								<option value="2" class="dropdown-text dropdown-color-2">Strauji pagriezieni</option>
+								<option value="3" class="dropdown-text dropdown-color-3">Segums (bedres, augstas apmales)</option>
+								<option value="4" class="dropdown-text dropdown-color-4">Cits</option>
 							</select>
 						</div>
 	
@@ -62,7 +63,16 @@
 				</div>
 
 			<div class="modal-footer">
-				<input type="submit" class="bbutton" value="Nosūtīt" />
+				<div class="report-footer">
+					<div>
+						<input type="submit" class="bbutton" value="Nosūtīt" />
+					</div>
+					<div id="recaptcha-notice"> 
+						This site is protected by reCAPTCHA and the Google
+						<a href="https://policies.google.com/privacy">Privacy Policy</a> and
+						<a href="https://policies.google.com/terms">Terms of Service</a> apply.
+					</div>
+				</div>		
 			</div>
 
 		</div>

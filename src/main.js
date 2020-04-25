@@ -59,6 +59,12 @@ function initMap() {
                 iconAnchor:   iconAnchor,
                 popupAnchor:  popupAnchor
 			});
+			icons[4] = L.icon({
+                iconUrl: 'images/location4.png',
+                iconSize:     iconSize,
+                iconAnchor:   iconAnchor,
+                popupAnchor:  popupAnchor
+			});
 
 			let openPlaceId = getCookie("placeId");
 			setCookie("placeId", null, 1, false);
@@ -171,12 +177,13 @@ function showVoteTop() {
 			let titles = [
 				"Šaurība / nepārredzamība",
 				"Strauji pagriezieni",
-				"Segums (bedres, bīstamas apmales)"
+				"Segums (bedres, bīstamas apmales)",
+				"Cits"
 			 ];
 			let contentElement = document.getElementById("top-content");
 			let result = "";
 
-			for(let type = 1; type <= 3; type++) {
+			for(let type = 1; type <= 4; type++) {
 				let idx = type - 1;
 
 				if(!data || !data[idx]) {
@@ -211,14 +218,13 @@ function showVoteTop() {
 						imgSrc = "/app/files/2" + place.img;
 						fullImgSrc = "/app/files/" + place.img;
 					}
-
-					/*<div class="top-txt">${voteCount}</div>*/
-
+					
 					top3 += `<div class="top-item">
 						<div class="top-image-box">
-							<img class="top-image" src='${imgSrc}' full-src='${fullImgSrc}' /> 
-							<img id="top-zoom-in" src="/images/zoom-in.png" >
-						</div>				
+							<img class="top-image" src='${imgSrc}' full-src='${fullImgSrc}' />
+						</div>		
+						<img id="top-zoom-in" src="/images/zoom-in.png" >
+						<div class="top-vote-count">👍&nbsp;${voteCount}</div>		
 						<div class="top-number">${i + 1}</div>
 						<div class="top-text">${place.description}</div>
 					</div>`;
@@ -226,7 +232,9 @@ function showVoteTop() {
 
 				if(top3.length > 0) {
 					result += 
-						`<div class="vote-top-title">${type}- ${titles[idx]}</div>
+						`<div class="vote-top-title">${type}- ${titles[idx]}
+							<div class="color-box-${type}">&nbsp;</div> 
+						</div>
 						<div class="vote-top-row" id="type${type}">
 							${top3}
 						</div>`;
@@ -286,11 +294,20 @@ $(window).on("load", function() {
 		window.showBigImage(imageSrc);
 	});
 
+	$(document).on("click", "#small-zoom-in", () => {
+		let imageSrc = document.getElementById("small-image").getAttribute("src");
+		window.showBigImage(imageSrc);
+	});
+
 	$(document).on("click", ".top-image", e => {
 		let src = e.target.getAttribute("full-src");
 		window.showBigImage(src);
 	});
-
+	
+	$(document).on("click", "#top-zoom-in", e => {
+		let src = e.target.parentNode.getElementsByClassName("top-image")[0].getAttribute("full-src");
+		window.showBigImage(src);
+	});
 	
 
 });

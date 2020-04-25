@@ -59,3 +59,13 @@ export function findGetParameter(parameterName) {
         });
     return result;
 }
+
+export function getCaptcha() {
+	return new Promise( (resolutionFunc, rejectionFunc) => {
+		grecaptcha.ready(function() {
+			grecaptcha.execute('6LdfLOEUAAAAAAGmzOyh5Kk08M98p5sWceMN9HVc', {action: 'homepage'}).then(function(token) {
+				resolutionFunc(token);
+			});
+		});
+	});
+}

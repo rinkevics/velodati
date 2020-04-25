@@ -1,3 +1,4 @@
+import { getCaptcha } from "./utils";
 
 export class VoteService {
     constructor() {
@@ -41,7 +42,7 @@ export class VoteService {
 					btnLike.classList.add('btn-outline-success');
 					btnLike.classList.remove('btn-success');
 				}
-				
+
 				window.voteService.vote(
 					window.placeID,
 					doUpvote,
@@ -63,19 +64,22 @@ export class VoteService {
 
 	}
 
-	vote(placeID, isUpvote, onSuccess, onError) {					
-		$.ajax({
-				url : "/app/vote",
-				type: "POST",
-				processData: false,
-				crossDomain: true,
-				
-				data: "place="+ placeID + "&isUpvote=" + isUpvote,
-				success: (data) => {
-					onSuccess(data);
-				},
-				error: onError
-			});
+	vote(placeID, isUpvote, onSuccess, onError) {	
+		getCaptcha().then(captcha => {		
+			$.ajax({
+					url : "/app/vote",
+					type: "POST",
+					processData: false,
+					crossDomain: true,
+					headers: { 'x-captcha': captcha },
+					data: "place="+ placeID + "&isUpvote=" + isUpvote,
+					success: (data) => {
+						onSuccess(data);
+					},
+					error: onError
+				});
+		});
+		
 
 	}
 		

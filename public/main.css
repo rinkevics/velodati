@@ -17,7 +17,7 @@ body {
 	z-index: 1000;
 	position: absolute;
 	right: 40px;
-	bottom: 40px;
+	cursor: pointer;
 }
 
 @media only screen and (min-width: 992px) {
@@ -25,20 +25,74 @@ body {
 		width: 70px;
 		height: 70px;
 		right: 40px;
+		bottom: 40px;
 	}
 }
 
 @media only screen and (max-width: 991px) {
 	#datuskola {
-		width: 60px;
-		height: 60px;
+		width: 45px;
+		height: 45px;
 		right: 0;
+		bottom: 100px;
 	}
 }
 
 #datuskola img {
 	width: 100%;
 	height: 100%;
+}
+
+@media only screen and (max-width: 991px) {
+	#color-codes {
+		display: none;
+	}
+
+	.color-codes-2 {
+		background-color: white;
+
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	
+		column-gap: 10px;
+		row-gap: 10px;
+
+		position: relative; 
+		width: 100;
+		font-size: 7px;
+		padding: 10px;	
+
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	#color-codes {
+		z-index: 1000;
+		position: absolute;
+		left: 50%;
+		bottom: 40px;
+	}
+
+	#color-codes-strip {
+		display: none;
+	}
+	
+	.color-codes-2 {
+		background-color: white;
+
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	
+		column-gap: 10px;
+		row-gap: 10px;
+
+		position: relative; 
+		width: 500px;
+		left: -250px;
+		font-size: 9px;
+		padding: 10px;
+	
+	}
 }
 
 
@@ -221,6 +275,29 @@ body {
 .top-image {
 	width: 200px;
 	height: 200px; 
+	cursor: pointer;
+}
+
+.top-vote-count {
+	grid-area: image;
+	position: relative;
+	left: 0;
+	top: 145px;
+	background-color: #e2e6ea;
+	padding: 8px;
+	width: max-content;
+	z-index: 10;
+	height: 35px;
+	margin: 10px;
+	font-size: 12px;
+}
+
+#top-zoom-in {
+	grid-area: image;
+	position: relative;
+	left: 160px;
+	top: 162px;
+	z-index: 10;
 	cursor: pointer;
 }
 
@@ -491,14 +568,8 @@ body {
 
 #small-zoom-in {
 	position: relative;
-	bottom: 35px;
-	left: 165px;
-}
-
-#top-zoom-in {
-	position: relative;
-	bottom: 35px;
-	left: 165px;
+	bottom: 42px;
+	left: 15px;
 }
 
 /* Safari */
@@ -521,4 +592,62 @@ body {
 	position: relative;
 	display: block;
 	padding-left: 8px;
+}
+
+.color-box-1 {
+	display: inline;
+	padding: 0 5px;
+	background-color: #13AFE5;
+}
+
+.color-box-2 {
+	display: inline;
+	padding: 0 5px;
+	background-color: #D9214C;
+}
+
+.color-box-3 {
+	display: inline;
+	padding: 0 5px;
+	background-color: #0CC640;
+}
+
+.color-box-4 {
+	display: inline;
+	padding: 0 5px;
+	background-color: #EAC435;
+}
+
+.dropdown-color-1 {
+	color: #13AFE5;
+}
+.dropdown-color-2 {
+	color: #D9214C;
+}
+.dropdown-color-3 {
+	color: #0CC640;
+}
+.dropdown-color-4 {
+	color: #EAC435;
+}
+
+
+.dropdown-text {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.grecaptcha-badge { 
+    visibility: hidden;
+}
+
+#recaptcha-notice {
+	color: gray;
+	font-size: 10px;
+	margin-top: 10px;
+}
+
+.report-footer {
+	display: grid;
+	grid-template-columns: 1fr;	
 }

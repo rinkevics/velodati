@@ -74,6 +74,26 @@
 				<div id="mapid" ></div>
 			</div>
 		</div>
+		<div class="box box-3" id="color-codes-strip">
+			<div class="color-codes-2">
+				<div>
+					<div class="color-box-1">&nbsp;</div> 
+					Šaurība / nepārredzamība
+				</div>
+				<div>
+					<div class="color-box-2">&nbsp;</div> 
+					Strauji pagriezieni
+				</div>
+				<div>
+					<div class="color-box-3">&nbsp;</div> 
+					Segums (bedres, bīstamas apmales)
+				</div>
+				<div>
+					<div class="color-box-4">&nbsp;</div> 
+					Cits
+				</div>		
+			</div>
+		</div>
 	</div>
 
 	<button type="button" id="report-btn-2"
@@ -89,6 +109,27 @@
 		<a target="_blank" rel="noopener noreferrer" href="http://www.datuskola.lv/">
 			<img src="images/ds_logo.png" />
 		</a>
+	</div>
+
+	<div id="color-codes">
+		<div class="color-codes-2">
+			<div>
+				<div class="color-box-1">&nbsp;</div> 
+				Šaurība / nepārredzamība
+			</div>
+			<div>
+				<div class="color-box-2">&nbsp;</div> 
+				Strauji pagriezieni
+			</div>
+			<div>
+				<div class="color-box-3">&nbsp;</div> 
+				Segums (bedres, bīstamas apmales)
+			</div>
+			<div>
+				<div class="color-box-4">&nbsp;</div> 
+				Cits
+			</div>		
+		</div>		
 	</div>
 
 	<div class="modal" id="start" tabindex="-1" role="dialog">
@@ -138,15 +179,5 @@
     <script src="lib/bootstrap.min.js" crossorigin="anonymous"></script>
 
 <script src="public/bundle.{{hashjs}}.js" type="module" ></script>
-
-<script>
-	grecaptcha.ready(function() {
-		grecaptcha.execute('6LdfLOEUAAAAAAGmzOyh5Kk08M98p5sWceMN9HVc', {action: 'homepage'}).then(function(token) {
-			console.log(token);
-
-		});
-	});
-	</script>
-
 </body>
 </html>
