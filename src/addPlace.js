@@ -61,6 +61,9 @@ export class AddPlace {
     showCrosshair() {
         var element = document.getElementById("color-codes");
         element.classList.add("d-none");
+        
+        var element = document.getElementById("color-codes-strip");
+        element.classList.add("d-none");
 
         var element = document.getElementById("report-btn");
         element.classList.add("d-none");
@@ -111,6 +114,9 @@ export class AddPlace {
 
     hideCrosshair() {        
         var element = document.getElementById("color-codes");
+        element.classList.remove("d-none");
+        
+        var element = document.getElementById("color-codes-strip");
         element.classList.remove("d-none");
 
         var element = document.getElementById("report-btn");
