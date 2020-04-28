@@ -557,7 +557,7 @@ body {
 }
 
 #big-image-src {
-	max-width: 765px;
+	max-width: 100%;
 	place-self: center;
 }
 
