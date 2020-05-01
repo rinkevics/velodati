@@ -7,14 +7,14 @@ import { AddPlace } from './addPlace.js';
 function initMap() {
 
 	window.mymap = L.map(
-	 'mapid',
+	    'mapid',
 		{ zoomControl: false,
 			closePopupOnClick: false }
 	).setView([56.951259, 24.112614], 13);
 
 	L.control.zoom({
- position:'bottomleft'
- }).addTo(window.mymap);
+         position:'bottomleft'
+    }).addTo(window.mymap);
 
 	const layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 18,
@@ -25,7 +25,7 @@ function initMap() {
 		chunkedLoading: true,
 		//disableClusteringAtZoom: 17,
 		spiderfyOnMaxZoom: true
-	 });
+	  });
 
 	fetch('/app/places')
 		.then(response => {
@@ -43,28 +43,28 @@ function initMap() {
 			let popupAnchor = [-3, -76]; // point from which the popup should open relative to the iconAnchor
 
 			icons[1] = L.icon({
- iconUrl: 'images/location.png',
- iconSize: iconSize,
- iconAnchor: iconAnchor,
- popupAnchor: popupAnchor
+                iconUrl: 'images/location.png',
+                iconSize:     iconSize,
+                iconAnchor:   iconAnchor,
+                popupAnchor:  popupAnchor
 			});
 			icons[2] = L.icon({
- iconUrl: 'images/location2.png',
- iconSize: iconSize,
- iconAnchor: iconAnchor,
- popupAnchor: popupAnchor
+                iconUrl: 'images/location2.png',
+                iconSize:     iconSize,
+                iconAnchor:   iconAnchor,
+                popupAnchor:  popupAnchor
 			});
 			icons[3] = L.icon({
- iconUrl: 'images/location3.png',
- iconSize: iconSize,
- iconAnchor: iconAnchor,
- popupAnchor: popupAnchor
+                iconUrl: 'images/location3.png',
+                iconSize:     iconSize,
+                iconAnchor:   iconAnchor,
+                popupAnchor:  popupAnchor
 			});
 			icons[4] = L.icon({
- iconUrl: 'images/location4.png',
- iconSize: iconSize,
- iconAnchor: iconAnchor,
- popupAnchor: popupAnchor
+                iconUrl: 'images/location4.png',
+                iconSize:     iconSize,
+                iconAnchor:   iconAnchor,
+                popupAnchor:  popupAnchor
 			});
 
 			let openPlaceId = getCookie("placeId");
@@ -119,7 +119,7 @@ function initMap() {
 									Balsot
 									<button type='button' id='btnLike' class='btn ${upvoteClass}'
 										onclick='doVote(${place.id})'>👍 <div id="voteCount">${voteCount}</div></button>
- 		</div>`;
+                    		</div>`;
 				});
 				
 				window.group.addLayer(marker);
@@ -247,12 +247,12 @@ function showVoteTop() {
 }
 
 $(window).on("load", function() {
- includeHtml('public/start.d02c2dc2e3257bcc7d4dc1e41dc0963f.html', 'start');
-	includeHtml('public/choose-place.4c0fc8f06ca674f8743a65473f9c9f6f.html', 'choose-place');
-	includeHtml('public/report.cd5177f561611019be237b24bf772219.html', 'report');
-	includeHtml('public/vote-top.2f94a4b3ba649f6c2e9a74082872d960.html', 'vote-top');
-	includeHtml('public/about-us.a87b2bfb76dd81f2b5288eebb2cd4c73.html', 'about-us');
-	includeHtml('public/big-image.9f85b967b17eaa16a26aec475a730bd4.html', 'big-image-box');
+    includeHtml('public/start.{{start}}.html', 'start');
+	includeHtml('public/choose-place.{{choosePlace}}.html', 'choose-place');
+	includeHtml('public/report.{{report}}.html', 'report');
+	includeHtml('public/vote-top.{{voteTop}}.html', 'vote-top');
+	includeHtml('public/about-us.{{aboutUs}}.html', 'about-us');
+	includeHtml('public/big-image.{{bigImage}}.html', 'big-image-box');
 	
 	let visited = getCookie("visited");
 	if(!visited) {
@@ -278,7 +278,6 @@ $(window).on("load", function() {
 	window.voteService = new VoteService();
 	window.facebookService = new FacebookService();
 
-						
 	window.showBigImage = imageSrc => {
 		if(imageSrc.length == 0 || imageSrc == "/images/noimage.png") {
 			return;

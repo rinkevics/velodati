@@ -374,7 +374,7 @@ body {
 	display: inline-block;
 }
 
-#description-label, #email-label {
+#description-label, #email-label, #uploadimage-label {
     background: #e9ecef;
     border: 1px solid #e2e6ea;
     padding: 10px;
