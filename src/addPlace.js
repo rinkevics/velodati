@@ -46,7 +46,8 @@ export class AddPlace {
                 data: data,
                 success: function (data) {
                     hideSpinner();
-                    alert("Paldies par veloslazdu!");
+                    alert( `Paldies par veloslazdu! Veloslazdi, kas iekļūs vietnes “Topā” tiks nosūtīti RDSD. 
+                        Balso par veloslazdiem, izvēloties tos kartē un autorizējoties ar Facebook.`);
                     location.reload();
                 },
                 error: function (jXHR, textStatus, errorThrown) {

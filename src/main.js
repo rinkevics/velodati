@@ -232,8 +232,7 @@ function showVoteTop() {
 
 				if(top3.length > 0) {
 					result += 
-						`<div class="vote-top-title">${type}- ${titles[idx]}
-							<div class="color-box-${type}">&nbsp;</div> 
+						`<div class="vote-top-title color-${type}">${type}- ${titles[idx]}
 						</div>
 						<div class="vote-top-row" id="type${type}">
 							${top3}

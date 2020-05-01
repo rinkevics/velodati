@@ -19,10 +19,10 @@
 									oninput="setCustomValidity('')" 
 									required="true">
 								<option value="" selected class="dropdown-text">Izvēlies kategoriju</option>
-								<option value="1" class="dropdown-text dropdown-color-1">Šaurība, nepārredzamība </option>
-								<option value="2" class="dropdown-text dropdown-color-2">Strauji pagriezieni</option>
-								<option value="3" class="dropdown-text dropdown-color-3">Segums (bedres, augstas apmales)</option>
-								<option value="4" class="dropdown-text dropdown-color-4">Cits</option>
+								<option value="1" class="dropdown-text color-1">Šaurība, nepārredzamība </option>
+								<option value="2" class="dropdown-text color-2">Strauji pagriezieni</option>
+								<option value="3" class="dropdown-text color-3">Segums (bedres, augstas apmales)</option>
+								<option value="4" class="dropdown-text color-4">Cits</option>
 							</select>
 						</div>
 	
@@ -38,8 +38,10 @@
 
 						<div class="input-group input-row">
 							<div class="custom-file">
-							<input type="file" class="custom-file-input velo-form-text" name="uploadimage" id="uploadimage" required="true">
-							<label class="custom-file-label " for="uploadimage">Pievieno attēlu</label>
+							<input type="file" class="custom-file-input velo-form-text" name="uploadimage" id="uploadimage" required="true"
+								oninvalid="setCustomValidity('Lūdzu pievieno attēlu!')"
+								oninput="setCustomValidity('')" >
+							<label class="custom-file-label " for="uploadimage">Pievieno attēlu no veloslazda vietas vai izmanto ekrānšāviņu no Google Street View</label>
 							</div>
 						</div>
 
@@ -48,7 +50,9 @@
 								Epasts (ar jums sazināsimies tikai tad, ja būs papildus jautājumi par šo vietu)
 							</label>
 							<input class="form-control velo-form-text" name="email" id="email"  required="true"
-									type="email" ></input>
+								oninvalid="setCustomValidity('Lūdzu, pārliecinieties, ka ievadītais e-pasts ir pareizs!')"
+								oninput="setCustomValidity('')" 
+								type="email" ></input>
 						</div>
 
 						<div class="velo-form-check">
