@@ -8,7 +8,7 @@ export class AddPlace {
     
         let that = this;
 
-        consol.log("uhsnou");
+        console.log("uhsnou");
 
         /*
         var myobj = $('#uploadimage');
