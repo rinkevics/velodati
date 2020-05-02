@@ -8,6 +8,8 @@ export class AddPlace {
     
         let that = this;
 
+        consol.log("uhsnou");
+
         /*
         var myobj = $('#uploadimage');
         myobj.on('keyup keypress blur change input', function() {

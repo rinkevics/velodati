@@ -278,7 +278,6 @@ $(window).on("load", function() {
 	window.voteService = new VoteService();
 	window.facebookService = new FacebookService();
 
-						
 	window.showBigImage = imageSrc => {
 		if(imageSrc.length == 0 || imageSrc == "/images/noimage.png") {
 			return;
@@ -310,5 +309,4 @@ $(window).on("load", function() {
 		window.showBigImage(src);
 	});
 	
-
 });

@@ -309,5 +309,4 @@ $(window).on("load", function() {
 		window.showBigImage(src);
 	});
 	
-
 });
