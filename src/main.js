@@ -247,11 +247,11 @@ function showVoteTop() {
 }
 
 $(window).on("load", function() {
- includeHtml('public/start.d02c2dc2e3257bcc7d4dc1e41dc0963f.html', 'start');
+ includeHtml('public/start.e059a7557042acf58528a0c88531419d.html', 'start');
 	includeHtml('public/choose-place.4c0fc8f06ca674f8743a65473f9c9f6f.html', 'choose-place');
 	includeHtml('public/report.cd5177f561611019be237b24bf772219.html', 'report');
 	includeHtml('public/vote-top.2f94a4b3ba649f6c2e9a74082872d960.html', 'vote-top');
-	includeHtml('public/about-us.a87b2bfb76dd81f2b5288eebb2cd4c73.html', 'about-us');
+	includeHtml('public/about-us.717d35ad7ab2787abe7e8eeff5145f0a.html', 'about-us');
 	includeHtml('public/big-image.9f85b967b17eaa16a26aec475a730bd4.html', 'big-image-box');
 	
 	let visited = getCookie("visited");
