@@ -26,7 +26,7 @@ export class FacebookService {
             FB.AppEvents.logPageView();
 
             FB.Event.subscribe('auth.authResponseChange', function(response) {
-                console.log('The status of the session changed to: '+response.status);
+                //console.log('The status of the session changed to: '+response.status);
             });
             
             window.facebookService.onLogin();

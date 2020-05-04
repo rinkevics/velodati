@@ -151,12 +151,17 @@ function initMap() {
 
 function setImg(input) {
 	if (input.files && input.files[0]) {
+		const fileSizeInMB = input.files[0].size / 1024 / 1024;
+		if(fileSizeInMB > 10) {
+			document.getElementById("uploadimage").value = null;
+			alert("Maksimālais faila izmērs 10MB");
+			return;
+		}
+
 		var reader = new FileReader();
-		
 		reader.onload = function (e) {
 			$('#img-upload').attr('src', e.target.result);
-		}
-		
+		}		
 		reader.readAsDataURL(input.files[0]);
 	}
 }
@@ -268,7 +273,7 @@ $(window).on("load", function() {
 				.map(parameter => parameter.split("="))
 				.filter(parameterValue => parameterValue[0] == "data_access_expiration_time")
 				.reduce(accumulator => accumulator + 1, 0);
-		console.log(`isRedirectFromFB ${isRedirectFromFB}`);
+		//console.log(`isRedirectFromFB ${isRedirectFromFB}`);
 	}
 
 	initMap();

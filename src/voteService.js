@@ -16,7 +16,6 @@ export class VoteService {
 			return response.json()
 		})
 		.then(data => {
-			console.log("fetch my votes");
             window.myvotes = data;
 		})
 		.catch(e => {
