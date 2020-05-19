@@ -259,6 +259,10 @@ body {
 	grid-row-gap: 10px;
 }
 
+.top-footer {
+	padding-top: 10px;
+}
+
 .top-number {
 	grid-area: nr;
 	width: min-content;

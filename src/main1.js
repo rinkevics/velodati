@@ -246,6 +246,9 @@ function showVoteTop() {
 				}
 				
 			}
+
+			result += `<div class="top-footer">Tops uzrāda punktus, par kuriem RD Satiksmes departaments vēl nav sniedzis atbildi. Pilns tops pieejams “Visi dati” sadaļā.</div>`;
+
 			contentElement.innerHTML = result;
 		})
 		.catch(e => console.log("e1"+ e));
