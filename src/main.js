@@ -36,36 +36,38 @@ function initMap() {
 			window.places = data.places;
 			let places = data.places;
 						
-			const icons = [];
 
 			let iconSize = [91, 99]; // size of the icon
 			let iconAnchor = [45, 75]; // point of the icon which will correspond to marker's location
 			let popupAnchor = [-3, -76]; // point from which the popup should open relative to the iconAnchor
 
-			icons[1] = L.icon({
- iconUrl: 'images/location.png',
- iconSize: iconSize,
- iconAnchor: iconAnchor,
- popupAnchor: popupAnchor
-			});
-			icons[2] = L.icon({
- iconUrl: 'images/location2.png',
- iconSize: iconSize,
- iconAnchor: iconAnchor,
- popupAnchor: popupAnchor
-			});
-			icons[3] = L.icon({
- iconUrl: 'images/location3.png',
- iconSize: iconSize,
- iconAnchor: iconAnchor,
- popupAnchor: popupAnchor
-			});
-			icons[4] = L.icon({
- iconUrl: 'images/location4.png',
- iconSize: iconSize,
- iconAnchor: iconAnchor,
- popupAnchor: popupAnchor
-			});
+			const icons = [
+				L.icon({
+					iconUrl: 'images/location.png',
+					iconSize: iconSize,
+					iconAnchor: iconAnchor,
+					popupAnchor: popupAnchor
+				}),
+				L.icon({
+					iconUrl: 'images/location2.png',
+					iconSize: iconSize,
+					iconAnchor: iconAnchor,
+					popupAnchor: popupAnchor
+				}),
+				L.icon({
+					iconUrl: 'images/location3.png',
+					iconSize: iconSize,
+					iconAnchor: iconAnchor,
+					popupAnchor: popupAnchor
+				}),
+				L.icon({
+					iconUrl: 'images/location4.png',
+					iconSize: iconSize,
+					iconAnchor: iconAnchor,
+					popupAnchor: popupAnchor
+				})
+			];
+
 
 			let openPlaceId = getCookie("placeId");
 			setCookie("placeId", null, 1, false);
@@ -189,17 +191,15 @@ function showVoteTop() {
 			let contentElement = document.getElementById("top-content");
 			let result = "";
 
-			for(let type = 1; type <= 4; type++) {
-				let idx = type - 1;
-
-				if(!data || !data[idx]) {
+			for(let type = 0; type < 4; type++) {
+				if(!data || !data[type]) {
 					continue;
 				}
 				
 				let top3 = "";
 				for(let i = 0; i < 3; i++) {
 					
-					let topPlace = data[idx][i];
+					let topPlace = data[type][i];
 					if(!topPlace) {
 						continue;
 					}
@@ -238,7 +238,7 @@ function showVoteTop() {
 
 				if(top3.length > 0) {
 					result += 
-						`<div class="vote-top-title color-${type}">${type}- ${titles[idx]}
+						`<div class="vote-top-title color-${type}">${type + 1}- ${titles[type]}
 						</div>
 						<div class="vote-top-row" id="type${type}">
 							${top3}
@@ -257,7 +257,7 @@ function showVoteTop() {
 $(window).on("load", function() {
  includeHtml('public/start.e059a7557042acf58528a0c88531419d.html', 'start');
 	includeHtml('public/choose-place.4c0fc8f06ca674f8743a65473f9c9f6f.html', 'choose-place');
-	includeHtml('public/report.cd5177f561611019be237b24bf772219.html', 'report');
+	includeHtml('public/report.33c442742f0347f172b5f57713445614.html', 'report');
 	includeHtml('public/vote-top.2f94a4b3ba649f6c2e9a74082872d960.html', 'vote-top');
 	includeHtml('public/about-us.717d35ad7ab2787abe7e8eeff5145f0a.html', 'about-us');
 	includeHtml('public/big-image.9f85b967b17eaa16a26aec475a730bd4.html', 'big-image-box');
