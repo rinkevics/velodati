@@ -261,12 +261,13 @@ $(window).on("load", function() {
 	includeHtml('public/vote-top.{{voteTop}}.html', 'vote-top');
 	includeHtml('public/about-us.{{aboutUs}}.html', 'about-us');
 	includeHtml('public/big-image.{{bigImage}}.html', 'big-image-box');
+	includeHtml('public/finish-message.{{finishMessage}}.html', 'finish-message');
 	
-	let visited = getCookie("visited");
+	let visited = getCookie("finishVisited");
 	if(!visited) {
-		$('#start').modal('show');
-		setCookie("visited", true, 365);
-	}	
+		$('#finish-message').modal('show');
+		setCookie("finishVisited", true, 365);
+	}
 	
 	let url = location.toString().split("?")[1];
 	if(url) {

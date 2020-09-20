@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 rm tmp.js
 rm src/main.js
 
@@ -53,6 +51,15 @@ ary=($voteTop)
 voteTop=${ary[0]}
 
 v1=`sed  "s/{{voteTop}}/${voteTop}/g"  <<< $v1 `
+
+
+finishMessage=`md5sum public/finish-message.html`
+IFS=" "
+ary=($finishMessage)
+finishMessage=${ary[0]}
+
+v1=`sed  "s/{{finishMessage}}/${finishMessage}/g"  <<< $v1 `
+
 
 echo $v1 > src/main.js
 

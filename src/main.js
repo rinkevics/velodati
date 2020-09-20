@@ -261,12 +261,13 @@ $(window).on("load", function() {
 	includeHtml('public/vote-top.2f94a4b3ba649f6c2e9a74082872d960.html', 'vote-top');
 	includeHtml('public/about-us.717d35ad7ab2787abe7e8eeff5145f0a.html', 'about-us');
 	includeHtml('public/big-image.9f85b967b17eaa16a26aec475a730bd4.html', 'big-image-box');
+	includeHtml('public/finish-message.d9399de7b464c6e84b070742e1235e37.html', 'finish-message');
 	
-	let visited = getCookie("visited");
+	let visited = getCookie("finishVisited");
 	if(!visited) {
-		$('#start').modal('show');
-		setCookie("visited", true, 365);
-	}	
+		$('#finish-message').modal('show');
+		setCookie("finishVisited", true, 365);
+	}
 	
 	let url = location.toString().split("?")[1];
 	if(url) {
